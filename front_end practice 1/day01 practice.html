@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*紀錄遇到的問題 17:48開始建置HTML*/
+        /*17:57開始撰寫CSS排版*/
+        /*18:23版已經切好 剩細節修飾*/
+        /*20:45 開始調整*/
+        /*21:06 調整完成 開始刻原版頁面*/
+        .background{
+            width:1200px ;
+            margin: 0 auto;
+            display:flex;
+            flex-wrap:wrap;
+        }
+        .Head{
+            margin: auto;
+            width: 80%;
+            text-align: center;
+            /* border: 1px solid red; */
+        }
+        .Head span{
+            color:goldenrod
+        }
+        .container{
+            margin-top: 20px;
+            width: 100%;
+            display:flex;
+            flex-wrap:wrap;
+        }
+        .son-container{
+            width:400px;
+            display:flex;
+            flex-wrap:wrap;
+            align-items: center;
+            
+        }
+        .son-container .big-pic{
+            margin: auto;
+            max-width: 400px;
+            /* align-items: center; */
+            
+        }
+        .left-item{
+            margin-top: 20px;
+            display:flex;
+            /* flex-wrap:wrap; */
+            flex-direction:row-reverse;
+            
+            width:100%;
+        }
+        .item{
+            margin-top: 20px;
+            display:flex;
+            /* flex-wrap:wrap; */
+            
+        }
+        .left-item .text{
+             width: 300px;
+            text-align: right;
+        
+        
+        }
+        .item .text{
+            width: 300px;
+        
+        }
+        .text .title{
+            color:goldenrod;
+        }
+        .pic{
+            display:flex;
+            width: 100px;
+
+        }
+        .pic img{
+            margin: auto;
+            border-radius: 100%;   
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background"> <!-- article-->
+        <div class="Head"> <!-- title-->
+            <h1>Why Traders <span>Choose Us</span> </h1> <!-- h1-->
+            <p>With a community of over 400 million users (and a majority age group being 18 to 29), wouldn’t you want to make sure you’re monitoring what people are posting on social networks? Especially if the demographic of your audience falls in that age range.</p> <!-- p-->
+        </div>
+        <div class="container"> <!-- content-->
+            <div class="son-container"><!-- list-->
+                <div class="left-item"><!-- list-item-->
+                    <div class="pic">
+                        <img src="https://picsum.photos/70/70/?random=11">
+                    </div>
+                    <div class="text">
+                        <div class="title">VISIT</div>
+                        <div class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo ea quae sit accusamus? Aspernatur, sunt dolor modi aperiam sapiente provident fuga dolorem necessitatibus? Deleniti </div>
+                    </div>
+                </div>
+            <div class="left-item">
+                  <div class="pic">
+                     <img src="https://picsum.photos/70/70/?random=12">
+                </div>
+                <div class="text">
+                    <div class="title">SAVE</div>
+                    <div class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo ea quae sit accusamus? Aspernatur, sunt dolor modi aperiam sapiente provident fuga dolorem necessitatibus? Deleniti </div>
+                </div>
+                </div>
+                <div class="left-item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/70/70/?random=13">
+                    </div>
+                <div class="text">
+                    <div class="title">EXPLORE</div>
+                    <div class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo ea quae sit accusamus? Aspernatur, sunt dolor modi aperiam sapiente provident fuga dolorem necessitatibus? Deleniti </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="son-container">
+                <div class="big-pic"> <!-- main-pic -->
+                    <img src="https://picsum.photos/400/600/?random=11">
+                </div>
+            </div>
+            <div class="son-container">
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/70/70/?random=14">
+                        </div>
+                    <div class="text">
+                        <div class="title">ORGANIZE </div>
+                        <div class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo ea quae sit accusamus? Aspernatur, sunt dolor modi aperiam sapiente provident fuga dolorem necessitatibus? Deleniti </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/70/70/?random=15">
+                        </div>
+                    <div class="text">
+                        <div class="title">COMUNICATE </div>
+                        <div class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo ea quae sit accusamus? Aspernatur, sunt dolor modi aperiam sapiente provident fuga dolorem necessitatibus? Deleniti </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="https://picsum.photos/70/70/?random=16">
+                        </div>
+                    <div class="text">
+                        <div class="title">SHARE </div>
+                        <div class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo ea quae sit accusamus? Aspernatur, sunt dolor modi aperiam sapiente provident fuga dolorem necessitatibus? Deleniti </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
