@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <style>
+        body{
+            --col-count:3;
+        }
+        .col{
+            box-sizing: border-box;
+            padding:0 15px;
+            display: flex;
+            align-items: center;
+            margin:15px 0;
+        }
+
+        .pic{
+            width: 50%;
+            
+        }
+        .pic img{
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .text{
+            width: 50%;
+            padding: 15px;
+        }
+
+        @media screen and (min-width:768px){
+            .wrap{
+                margin:auto;
+                display:flex;
+                flex-wrap: wrap;
+            }
+        
+            .col{
+                display:flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 33.3333333%;
+                box-sizing: border-box;
+                padding:0 15px;
+            }
+            .pic,.text{
+                width: 100%;
+            }
+        }
+
+ 
+
+        @media screen and (min-width:1200px){
+            .wrap{
+                max-width: 1200px;
+            }
+            .col{
+                width:25%;
+                position: relative;
+            }
+            .col:nth-child(-n+2){
+                width:50%;
+            }
+            .col:nth-last-child(-n+4){
+                overflow: hidden;
+            }
+
+            .col:nth-last-child(-n+4) .text{
+                position: absolute;
+                width: 90%;
+                height: 100%;
+                box-sizing: border-box;
+                top: 100%;
+            /* margin:0 30px; */
+            /* 與父層同高 */
+                background-color: #0008;
+                color:#eee;
+                padding:30px;
+            /* opacity: 0; */
+                transition:1s;
+            }
+            .col:hover .text{
+                top:0;
+            }
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div class="wrap">
+        <div class="col">
+            <div class="pic"><img src="https://picsum.photos/300/200/?random=10"></div>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto odit officiis nobis explicabo quasi tempore eligendi consequatur voluptas sunt, nihil hic natus veniam nostrum quae aspernatur facere delectus ipsum laboriosam.</div>
+        </div>
+        <div class="col">
+            <div class="pic"><img src="https://picsum.photos/300/200/?random=11"></div>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto odit officiis nobis explicabo quasi tempore eligendi consequatur voluptas sunt, nihil hic natus veniam nostrum quae aspernatur facere delectus ipsum laboriosam.</div>
+        </div>
+        <div class="col">
+            <div class="pic"><img src="https://picsum.photos/300/200/?random=12"></div>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto odit officiis nobis explicabo quasi tempore eligendi consequatur voluptas sunt, nihil hic natus veniam nostrum quae aspernatur facere delectus ipsum laboriosam.</div>
+        </div>
+        <div class="col">
+            <div class="pic"><img src="https://picsum.photos/300/200/?random=20"></div>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto odit officiis nobis explicabo quasi tempore eligendi consequatur voluptas sunt, nihil hic natus veniam nostrum quae aspernatur facere delectus ipsum laboriosam.</div>
+        </div>
+        <div class="col">
+            <div class="pic"><img src="https://picsum.photos/300/200/?random=14"></div>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto odit officiis nobis explicabo quasi tempore eligendi consequatur voluptas sunt, nihil hic natus veniam nostrum quae aspernatur facere delectus ipsum laboriosam.</div>
+        </div>
+        <div class="col">
+            <div class="pic"><img src="https://picsum.photos/300/200/?random=15"></div>
+            <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto odit officiis nobis explicabo quasi tempore eligendi consequatur voluptas sunt, nihil hic natus veniam nostrum quae aspernatur facere delectus ipsum laboriosam.</div>
+        </div>
+    </div>
+</body>
+</html>
