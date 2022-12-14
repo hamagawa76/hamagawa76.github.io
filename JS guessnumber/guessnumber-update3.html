@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <style>
+        *{
+            font-family: 思源黑體 , 微軟正黑體 , 蘋方黑體 , 華康麗黑體 , Helvetica , Arial , sans-serif , serif;
+        }
+
+        body{
+            background-color: #000;
+        }
+
+        .container{
+            margin: 50px auto;
+            max-width: 600px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #343d3b;
+        }
+        .text{
+            color: #eee;
+            text-align: center;
+        }
+
+        .showvalue{
+            font-size: 32px;
+            color:#eee;
+            width: 100%;
+            height:40px;
+            text-align: center;
+        }
+        input{
+            width: 100%;
+            height: 40px;
+        }
+        .row{
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .input-btn{
+            background: #343d3b;
+            color: #eee;
+            width: 30%;
+            height: 45px;
+            text-align: center;
+            vertical-align:middle;
+            cursor: pointer;
+            font-size: 32px;
+            font-weight: 100;
+            
+        }
+        .input-btn:hover{
+            background: silver;
+            color: #000;
+            border: 1px solid gray;
+        }
+        .guess-btn, .reset{
+            border: 2px solid #ccb65e;
+            width: 50%;
+            background-color: #343d3b;
+            color:#eee;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 20px;
+        }
+        .guess-btn:hover , .reset:hover{
+            background-color: gray;
+            color:#fa0;
+        }
+        .showbox{
+            width: 100%;
+            background-color: #ccb65e;
+            color:darkblue;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .hint , .show{
+            padding: 20px;
+            width: 40%;
+            font-size: 18px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="background">
+    <div class="container">
+        <div class="text">
+            <h1>終極密碼</h1>
+            <p>請參與者輪流輸入1~100的數字，請盡快猜到密碼！</p>
+        </div>
+        <!-- <input type="text" id="num-input"> -->
+        <div class="showvalue"></div>
+        <button class="guess-btn">送出密碼</button>
+        <button class="reset">產生終極密碼/重新開始</button>
+        <div class="showbox">
+            <span class="hint"></span>
+            <p class="show"><span class="min"> 0</span>~<span class="max">100</span></p>
+        </div>
+
+        <div class="row">
+            <div class="input-btn enter-num" id="input-one">1</div>
+            <div class="input-btn enter-num" id="input-two">2</div>
+            <div class="input-btn enter-num" id="input-three">3</div>
+        </div>
+        <div class="row">
+            <div class="input-btn enter-num" id="input-four">4</div>
+            <div class="input-btn enter-num" id="input-five">5</div>
+            <div class="input-btn enter-num" id="input-six">6</div>
+        </div>
+        <div class="row">
+            <div class="input-btn enter-num" id="input-seven">7</div>
+            <div class="input-btn enter-num" id="input-eight">8</div>
+            <div class="input-btn enter-num" id="input-nine">9</div>
+        </div>
+        <div class="row">
+            <div class="input-btn enter-num" id="input-zero">0</div>
+            <div class="input-btn" id="input-backspace">←</div>
+            <div class="input-btn" id="input-open">公布密碼</div>
+
+        </div>
+    </div>
+</div>
+
+    <script>
+        function getNumber(min,max){
+            min=Math.ceil(min);
+            max=Math.floor(max);
+            return Math.floor(Math.random()*(max-min+1)+min)
+        }
+
+        function isNumber(input){
+            return parseFloat(input).toString()!="NaN";
+        }
+
+
+        let num=getNumber(0,100);
+        // let myInput=document.querySelector('#num-input');
+        let myBtn=document.querySelector('.guess-btn')
+        let mySpan=document.querySelector('.hint')
+        let myMax=document.querySelector('.max')
+        let myMin=document.querySelector('.min')
+        let myReset=document.querySelector('.reset')
+        let showAnswer=document.querySelector('#input-open')
+        let showValue=document.querySelector('.showvalue')
+        let backSpace=document.querySelector('#input-backspace')
+ 
+        
+
+        // function catchNumber(){
+        //     const numBtn = document.getElementsByClassName("enter-num"); //數字0~9的class，我多給他一個class
+        //     let result = '';
+        //     for(var i =0; i < numBtn.length; i++){ //每個擁有這個class名稱者都要監聽
+        //         numBtn[i].addEventListener('click', (event) =>{
+        //         let enterNum = event.target.innerHTML;//取得監聽
+        //         result = result + enterNum; //字串串接
+        //         document.getElementById("num-input").setAttribute('value',result); //放到input
+        //         });
+        //     }
+        // }
+
+
+            const numBtn = document.getElementsByClassName("enter-num"); //數字0~9的class，我多給他一個class
+            let result = '';
+            for(var i =0; i < numBtn.length; i++){ //每個擁有這個class名稱者都要監聽
+                numBtn[i].addEventListener('click', (event) =>{
+                let enterNum = event.target.textContent;//取得字串
+                result = result + enterNum; //字串串接
+                showValue.innerText=result;
+                });
+                result='';
+            }
+
+        
+        
+    
+
+
+
+        let resettxt='新的終極密碼已設定 請開始遊戲'
+        let resetmin=0
+        let resetmax=100
+        
+        backSpace.addEventListener('click',function(){
+            let cancel=showValue.innerText;
+            let canceltxt=cancel.substring(0,cancel.length-1)
+            resulttxt=result.substring(0,result.length-1)
+            showValue.innerText=canceltxt;
+            result=resulttxt;
+        })
+
+        showAnswer.addEventListener('click',function(){
+            console.log('showAnswer')
+            window.confirm('確定要顯示密碼嗎?');
+            if (confirm('確定要顯示密碼嗎?') == true) {
+                mySpan.innerHTML = `終極密碼為${num}`;
+            } else {
+                mySpan.innerHTML = '請繼續加油';
+            }
+        })
+        myReset.addEventListener('click', function(){
+            // let resetmin=0;
+            // let resetmax=100;
+            // myMin.innerHTML=resetmin;
+            // myMax.innerHTML=resetmax;
+            // mySpan.innerText=resettxt;
+            // // let num=new getNumber(0,100);
+            // console.log(num)
+            // showValue.innerText='';
+            history.go(0);
+        })
+
+        let wrongMessage="請輸入在範圍內的數字"
+
+        myBtn.addEventListener('click', function(){
+            // TODO 把input value印出來
+            
+            console.log(showValue.textContent)
+            console.log(resetmax)
+            console.log(resetmin)
+            result='';
+
+            //1 抓到input的值
+            let tmp=showValue.textContent;
+            // let mini=myMin.innerHTML;
+            // let maxi=myMax.innerHTML;
+
+            //2 按鈕後 把tmp放到span裡面
+            mySpan.textContent=tmp;
+            let checknumber=isNumber(tmp)
+            if (checknumber==false){
+                mySpan.innerText=wrongMessage;
+            }
+            else if(tmp<=resetmin || tmp>=resetmax){
+                mySpan.innerText=wrongMessage;
+            }
+            else if(tmp<num){
+                myMin.textContent=tmp
+                resetmin=tmp
+                
+            }
+            else if(tmp>num){
+                myMax.textContent=tmp
+                resetmax=tmp
+            }
+            else{
+                let answer=`恭喜你答對了，答案是${num}`
+                mySpan.innerText=answer
+            }
+            showValue.innerText='';
+            
+
+        })
+        
+    </script>
+</body>
+</html>
