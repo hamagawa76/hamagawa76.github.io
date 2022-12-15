@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <style>
+        .main-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: rgb(32, 32, 77);
+            /* 讓選單定位 */
+            position: relative;
+        }
+
+        .logo img{
+            vertical-align: middle;
+        }
+       
+        .main-nav a{
+            /* display: block; */
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+
+        .step-nav{
+            display:none;
+        }
+
+        input{
+            display: none;
+        }
+      
+        /* @media screen and (max-width:767px){} */
+        @media screen and (width<768px) {
+            .HB{
+                width: 40px;
+                height: 40px;
+                background-color: #000;
+            /* 漢堡線排列 */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                position: relative;
+            }
+
+
+            .HB span{
+                width: 80%;
+                height: 2px;
+                background-color: #fff;
+            }
+            .main-nav{
+                position:absolute;
+                background-color: #fa0 ;
+                top:100%;
+                left: 0;
+                right:0;
+                opacity: 0;
+                transition: 0.5s;
+
+            }
+            #menu-control:checked~ .main-header .main-nav{
+                left: 0;
+                opacity: 1;
+            }
+
+            #menu-control:checked~ .main-header .HB span:nth-child(2){
+                display: none;
+            }
+
+            #menu-control:checked~ .main-header .HB span:first-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(45deg);
+            }
+            #menu-control:checked~ .main-header .HB span:last-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(135deg);
+            }
+
+            .main-nav a{
+                display: block;
+            }
+            .main-nav a +a {
+                border-top: 1px solid #eee ;
+            }
+            
+            .main-nav-box{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                flex-wrap: wrap;
+                font-size: 24px;
+                position: relative;
+            }
+            .step-nav{
+                /* position: relative; */
+                width: 100%;
+                background-color:#fa0;
+                font-size: 16px;
+                left: -200%;
+                right:0;
+                opacity: 0;
+                transition: 0.5s;
+            }
+
+            .LHB{
+                position: relative;
+                width: 20px;
+                height: 20px;
+                background-color: rgb(3, 3, 87);
+            /* 漢堡線排列 */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            .LHB span{
+                width: 80%;
+                height: 1px;
+                background-color: #fff;
+            }
+
+            #list-control-about:checked~ .step-nav{
+                display: block;
+                opacity: 1;
+                left:0;
+            }
+
+            #list-control-about:checked~ .LHB span:nth-child(2){
+                display: none;
+            }
+
+            #list-control-about:checked~ .LHB span:first-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(45deg);
+            }
+
+            #list-control-about:checked~ .LHB span:last-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(135deg);
+            }
+
+            #list-control-members:checked~ .step-nav{
+                display: block;
+                opacity: 1;
+                left:0;
+            }
+
+            #list-control-members:checked~ .LHB span:nth-child(2){
+                display: none;
+            }
+
+            #list-control-members:checked~ .LHB span:first-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(45deg);
+            }
+
+            #list-control-members:checked~ .LHB span:last-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(135deg);
+            }
+
+            #list-control-service:checked~ .step-nav{
+                display: block;
+                opacity: 1;
+                left:0;
+            }
+
+            #list-control-service:checked~ .LHB span:nth-child(2){
+                display: none;
+            }
+
+            #list-control-service:checked~ .LHB span:first-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(45deg);
+            }
+
+            #list-control-service:checked~ .LHB span:last-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(135deg);
+            }
+
+            #list-control-contact:checked~ .step-nav{
+                display: block;
+                opacity: 1;
+                left:0;
+            }
+
+            #list-control-contact:checked~ .LHB span:nth-child(2){
+                display: none;
+            }
+
+            #list-control-contact:checked~ .LHB span:first-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(45deg);
+            }
+
+            #list-control-contact:checked~ .LHB span:last-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(135deg);
+            }
+
+            #list-control-comp:checked~ .step-nav{
+                display: block;
+                opacity: 1;
+                left:0;
+            }
+
+            #list-control-comp:checked~ .LHB span:nth-child(2){
+                display: none;
+            }
+
+            #list-control-comp:checked~ .LHB span:first-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(45deg);
+            }
+
+            #list-control-comp:checked~ .LHB span:last-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(135deg);
+            }
+
+            #list-control-invest:checked~ .step-nav{
+                display: block;
+                opacity: 1;
+                left:0;
+            }
+
+            #list-control-invest:checked~ .LHB span:nth-child(2){
+                display: none;
+            }
+
+            #list-control-invest:checked~ .LHB span:first-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(45deg);
+            }
+
+            #list-control-invest:checked~ .LHB span:last-child{
+                position: absolute;
+                align-self: center;
+                transform:  rotate(135deg);
+            }
+        }
+        @media screen and (width>=768px){
+            /* 漢堡拿掉 */
+            .HB{
+                display: none;
+            }
+            .LHB{
+                display: none;
+            }
+            .main-nav{
+                display: flex;
+                /* position:relative; */
+                /* 決對定位拿掉 */
+                /* top:auto; 這邊本來就不需要 */
+                /* background-color: transparent; */
+            }
+
+            .main-nav a{
+                /* inline 變區塊 調整高度才有用?吃的到flex的指令*/
+                /* display: block;
+                padding: 10px 20px;
+                text-decoration: none; */
+                /* 這邊手機都寫過了 */
+                color: #eee;
+            }
+
+            .main-nav a +a {
+                border-top: none ;
+            }
+
+            .main-nav-box a:hover{
+                background-color: #fa0;
+                color:#333
+            }
+
+            .main-nav-box{
+                display: flex;
+                position: relative;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                flex-wrap: wrap;
+                
+            }
+
+            .step-nav{
+                width: fit-content;
+                background-color: #fa0;
+            }
+
+            .main-nav-box:hover .step-nav{
+                display: flex;
+                flex-wrap: wrap;
+                position:absolute;
+                width: 100%;
+                left:0;
+                top:100%;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <input type="checkbox" name="list" id="menu-control">
+    <header class="main-header">
+        <div class="logo">
+            <h1>
+                <a href="#"><img src="https://fakeimg.pl/80x40/200"></a>
+            </h1>
+        </div>
+        <!-- -------------- -->
+        <label for="menu-control" class="HB">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <!-- -------------- -->
+        <div class="main-nav">
+            <div class="main-nav-box">
+                <a href="#">關於我們</a>
+                
+                    <input type="checkbox" name="list" id="list-control-about">
+                    <label for="list-control-about" class="LHB">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="step-nav">
+                        <a href="#">公司沿革</a>
+                        <a href="#">服務目標</a>
+                        <a href="#">公司精神</a>
+                    </div>
+                
+            </div>
+            <div class="main-nav-box">
+                <a href="#">團隊成員</a>
+                <input type="checkbox" name="list" id="list-control-members">
+                <label for="list-control-members" class="LHB">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <div class="step-nav">
+                    <a href="#">組織架構</a>
+                    <a href="#">部門主管</a>
+                    <a href="#">團隊成員</a>
+                </div>
+            </div>
+            <div class="main-nav-box">
+                <a href="#">服務項目</a>
+                <input type="checkbox" name="list" id="list-control-service">
+                <label for="list-control-service" class="LHB">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <div class="step-nav">
+                    <a href="#">實體商品</a>
+                    <a href="#">虛擬服務</a>
+                    <a href="#">作品分享</a>
+                </div>
+            </div>
+            <div class="main-nav-box">
+                <a href="#">聯絡我們</a>
+                <input type="checkbox" name="list" id="list-control-contact">
+                <label for="list-control-contact" class="LHB">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <div class="step-nav">
+                    <a href="#">全球據點</a>
+                    <a href="#">台灣據點</a>
+                    <a href="#">意見回饋</a>
+                </div>
+            </div>
+            <div class="main-nav-box">
+                <a href="#">合作夥伴</a>
+                <input type="checkbox" name="list" id="list-control-comp">
+                <label for="list-control-comp" class="LHB">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <div class="step-nav">
+                    <a href="#">A公司</a>
+                    <a href="#">B公司</a>
+                    <a href="#">C公司</a>
+                </div>
+            </div>
+            <div class="main-nav-box">
+                <a href="#">投資人專區</a>
+                <input type="checkbox" name="list" id="list-control-invest">
+                <label for="list-control-invest" class="LHB">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <div class="step-nav">
+                    <a href="#">歷年財務報表</a>
+                    <a href="#">子公司財務報表</a>
+                    <a href="#">歷年投資人報告書</a>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
