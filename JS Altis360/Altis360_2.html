@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #container {
+            width: 100%;
+        }
+
+        h1 {
+            width: 100%;
+            text-align: center;
+        }
+
+        #kv {
+            display: flex;
+            position: relative;
+            align-items: center;
+            width: 100%;
+
+        }
+
+        #kv img {
+            width: 100%;
+            top: 0;
+            z-index: -1;
+        }
+
+        #pbutton {
+            width: 10%;
+            position: absolute;
+            left: 15%
+        }
+
+        #mbutton {
+            width: 10%;
+            position: absolute;
+            right: 15%
+        }
+
+        #pbutton svg,
+        #mbutton svg {
+            width: 70%;
+        }
+
+        button {
+            background-color: #0000;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 需求 只要用360 兩個按鈕 改變顯示的索引值
+    建議圖片抓下來 -->
+    <div class="box">
+        <h1>賞車360</h1>
+        <div id="container">
+            <div id="kv">
+                <!-- <img src="./Red/10001.png" alt=""> -->
+                <div id="mbutton"  onclick="beforePhoto()">
+                    <button>
+                        <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-right">
+                            <path
+                                d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="space"></div>
+                <div id="pbutton" onclick="nextPhoto()">
+                    <button>
+                        <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-left">
+                            <path
+                                d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+window.onload = function () {
+            GenCarArry();
+            picReady();
+ 
+        }
+        let mbtn = document.querySelector('#mbutton');
+        let pbtn = document.querySelector('#pbutton');
+        let kv = document.querySelector('#kv');
+        const carArray = [];
+
+        let piclNum = 0;
+        function beforePhoto(){
+            piclNum--;
+            if(piclNum < 0){
+               piclNum=50;
+            }
+            deletePhoto(); //破壞掉原來的標籤
+            createPhoto(carArray[piclNum]); //再建一個
+            
+        }
+
+        function nextPhoto(){
+            piclNum++;
+            if(piclNum > 50){
+                piclNum=0
+            }
+            deletePhoto();//破壞掉原來的標籤
+            createPhoto(carArray[piclNum]);//再建一個
+            
+        }
+
+        function deletePhoto(){
+            const element = document.getElementById('myPhoto');
+            element.remove();
+        }
+
+        function createPhoto(photoPath){
+            let img = document.createElement("img");
+            img.setAttribute("id", "myPhoto");
+            img.setAttribute("src", photoPath);
+            kv.appendChild(img);
+        }
+
+        function picReady(){
+            let setting=carArray[0]
+            let img = document.createElement("img");
+            img.setAttribute("id", "myPhoto");
+            img.setAttribute("src", setting);
+            kv.appendChild(img);
+        }
+
+        function GenCarArry() {
+            for (var i = 1; i <= 9; i++) {
+                let img = `./Red/1000${i}.png`;
+                carArray.push(img);
+            }
+
+            for (var i = 10; i <= 51; i++) {
+                let img = `./Red/100${i}.png`;
+                carArray.push(img);
+            }
+        }
+
+     
+
+
+
+    </script>
+</body>
+
+</html>
