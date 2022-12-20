@@ -21,7 +21,7 @@
             vertical-align: middle;
         }
        
-        .main-nav a{
+        .main-nav-box a{
             /* display: block; */
             padding: 10px 20px;
             text-decoration: none;
@@ -114,6 +114,12 @@
                 transition: 0.5s;
             }
 
+            .step-nav a:hover{
+                background-color:rgb(247, 206, 124);
+                color: #333;
+                transition: 0.5s;
+            }
+
             .LHB{
                 position: relative;
                 width: 20px;
@@ -121,15 +127,23 @@
                 background-color: rgb(3, 3, 87);
             /* 漢堡線排列 */
                 display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
                 align-items: center;
+                justify-content: center;
             }
 
             .LHB span{
                 width: 80%;
-                height: 1px;
-                background-color: #fff;
+                height: 2px;
+                background-color: #eee;
+            }
+
+            .LHB span:first-child{
+                align-self: center;
+                transform:  scaleX(1.5) rotate(45deg) ;
+            } 
+            .LHB span:last-child{
+                align-self: center;
+                transform:  scaleX(1.5) rotate(135deg);
             }
 
             #list-control-about:checked~ .step-nav{
@@ -138,9 +152,11 @@
                 left:0;
             }
 
-            #list-control-about:checked~ .LHB span:nth-child(2){
+           
+
+            /* #list-control-about:checked~ .LHB span:nth-child(2){
                 display: none;
-            }
+            } */
 
             #list-control-about:checked~ .LHB span:first-child{
                 position: absolute;
@@ -160,9 +176,9 @@
                 left:0;
             }
 
-            #list-control-members:checked~ .LHB span:nth-child(2){
+            /* #list-control-members:checked~ .LHB span:nth-child(2){
                 display: none;
-            }
+            } */
 
             #list-control-members:checked~ .LHB span:first-child{
                 position: absolute;
@@ -180,10 +196,6 @@
                 display: block;
                 opacity: 1;
                 left:0;
-            }
-
-            #list-control-service:checked~ .LHB span:nth-child(2){
-                display: none;
             }
 
             #list-control-service:checked~ .LHB span:first-child{
@@ -204,9 +216,6 @@
                 left:0;
             }
 
-            #list-control-contact:checked~ .LHB span:nth-child(2){
-                display: none;
-            }
 
             #list-control-contact:checked~ .LHB span:first-child{
                 position: absolute;
@@ -226,9 +235,6 @@
                 left:0;
             }
 
-            #list-control-comp:checked~ .LHB span:nth-child(2){
-                display: none;
-            }
 
             #list-control-comp:checked~ .LHB span:first-child{
                 position: absolute;
@@ -248,9 +254,6 @@
                 left:0;
             }
 
-            #list-control-invest:checked~ .LHB span:nth-child(2){
-                display: none;
-            }
 
             #list-control-invest:checked~ .LHB span:first-child{
                 position: absolute;
@@ -308,14 +311,21 @@
                 
             }
 
-            .step-nav{
-                width: fit-content;
+            .main-nav-box:hover{
                 background-color: #fa0;
+            }
+
+            .step-nav{
+                width: 100%;
+                background-color: rgb(247, 206, 124);
+                
+                
             }
 
             .main-nav-box:hover .step-nav{
                 display: flex;
                 flex-wrap: wrap;
+                justify-content: center;
                 position:absolute;
                 width: 100%;
                 left:0;
@@ -332,7 +342,7 @@
     <header class="main-header">
         <div class="logo">
             <h1>
-                <a href="#"><img src="https://fakeimg.pl/80x40/200"></a>
+                <a href="#"><img src="https://picsum.photos/80/40/?random=10"></a>
             </h1>
         </div>
         <!-- -------------- -->
@@ -350,7 +360,6 @@
                     <label for="list-control-about" class="LHB">
                         <span></span>
                         <span></span>
-                        <span></span>
                     </label>
                     <div class="step-nav">
                         <a href="#">公司沿革</a>
@@ -363,7 +372,6 @@
                 <a href="#">團隊成員</a>
                 <input type="checkbox" name="list" id="list-control-members">
                 <label for="list-control-members" class="LHB">
-                    <span></span>
                     <span></span>
                     <span></span>
                 </label>
@@ -379,7 +387,6 @@
                 <label for="list-control-service" class="LHB">
                     <span></span>
                     <span></span>
-                    <span></span>
                 </label>
                 <div class="step-nav">
                     <a href="#">實體商品</a>
@@ -391,7 +398,6 @@
                 <a href="#">聯絡我們</a>
                 <input type="checkbox" name="list" id="list-control-contact">
                 <label for="list-control-contact" class="LHB">
-                    <span></span>
                     <span></span>
                     <span></span>
                 </label>
@@ -407,7 +413,6 @@
                 <label for="list-control-comp" class="LHB">
                     <span></span>
                     <span></span>
-                    <span></span>
                 </label>
                 <div class="step-nav">
                     <a href="#">A公司</a>
@@ -419,7 +424,6 @@
                 <a href="#">投資人專區</a>
                 <input type="checkbox" name="list" id="list-control-invest">
                 <label for="list-control-invest" class="LHB">
-                    <span></span>
                     <span></span>
                     <span></span>
                 </label>
