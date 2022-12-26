@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
     <style>
         .accordion-button::after {
-            --bs-accordion-btn-icon: url(https://icons8.com/icon/62888/plus-math);
+            --bs-accordion-btn-icon: url();
             flex-shrink: 0;
             width: var(--bs-accordion-btn-icon-width);
             height: var(--bs-accordion-btn-icon-width);
@@ -28,7 +28,7 @@
         }
 
         .accordion-button:not(.collapsed)::after {
-            --bs-accordion-btn-active-icon: url(https://icons8.com/icon/79029/subtract);
+            --bs-accordion-btn-active-icon: url();
             background-image: var(--bs-accordion-btn-active-icon);
             transform: var(--bs-accordion-btn-icon-transform);
         }
@@ -69,9 +69,21 @@
             width: 120px;
         }
 
-        .free {
+        .navbar-nav .nav-link:hover{ 
+            color:#00c300;
+            transition: 0.5s;
+        }
+
+        .free, .free:hover {
             color: #00c300;
         }
+        .more,
+        .more:hover{
+           color: var(--bs-primary-rgb);
+        }
+
+  
+        
 
         .text-primary {
             --bs-text-opacity: 1;
@@ -90,7 +102,7 @@
             --bs-btn-active-color: #fff;
             --bs-btn-active-bg: #01e101;
             --bs-btn-active-border-color: #01e101;
-            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-active-shadow: inset 0 3px 5px #00c300;;
             --bs-btn-disabled-color: #fff;
             --bs-btn-disabled-bg: #00c300;
             --bs-btn-disabled-border-color: #00c300;
@@ -397,13 +409,13 @@
 
 </head>
 
-<body>
+<body title="whoscall">
     <nav class="navbar navbar-expand-lg bg-light navbar-light head-nav">
         <div class="container-fluid">
             <!-- fluid拿掉 背景滿版 文字固定
             寬度在container 顏色在父層 -->
 
-            <a class="navbar-brand md-auto navlogo" href="#"><img src="./pic/logo.svg" alt=""></a>
+            <h1 class="navbar-brand md-auto navlogo" href="#"><img src="./pic/logo.svg" alt="whoscall"></h1>
             <div class="ms-auto d-block d-md-none"><a class="free" href="#">免費下載</a></div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -484,7 +496,7 @@
                         aria-controls="android-pic-class">Android</button>
                 </div>
             </div>
-            <div class="row mb-5 mt-5">
+            <div class="row mb-5 mt-5 ">
                 <div class="col-12 col-lg-6">
                     <div class="ios-pic-class d-flex" id="ios-pic">
                         <img class="m-auto"
@@ -525,7 +537,7 @@
                                     class=" btn btn-primary m-auto ms-md-auto d-flex rounded ms-auto justify-content-center d-block d-lg-none">
                                     <a class="  text-white text-decoration-none fw-bold" href="">了解更多</a>
                                 </button>
-                                <a class="d-none d-lg-block text-decoration-none text-primary" href="#">了解更多→</a>
+                                <a class="d-none d-lg-block text-decoration-none more" href="#">了解更多→</a>
                             </div>
                         </div>
                     </div>
@@ -572,7 +584,7 @@
                                     class=" btn btn-primary m-auto ms-md-auto d-flex rounded ms-auto justify-content-center d-block d-lg-none">
                                     <a class="  text-white text-decoration-none fw-bold" href="">了解更多</a>
                                 </button>
-                                <a class="d-none d-lg-block text-decoration-none text-primary" href="#">了解更多→</a>
+                                <a class="d-none d-lg-block text-decoration-none more" href="#">了解更多→</a>
                             </div>
                         </div>
                     </div>
@@ -619,7 +631,7 @@
                                     class=" btn btn-primary m-auto ms-md-auto d-flex rounded ms-auto justify-content-center d-block d-lg-none">
                                     <a class="  text-white text-decoration-none fw-bold" href="">了解更多</a>
                                 </button>
-                                <a class="d-none d-lg-block text-decoration-none text-primary" href="#">了解更多→</a>
+                                <a class="d-none d-lg-block text-decoration-none more" href="#">了解更多→</a>
                             </div>
                         </div>
                     </div>
@@ -666,7 +678,7 @@
                                     class=" btn btn-primary m-auto ms-md-auto d-flex rounded ms-auto justify-content-center d-block d-lg-none">
                                     <a class="  text-white text-decoration-none fw-bold" href="">了解更多</a>
                                 </button>
-                                <a class="d-none d-lg-block text-decoration-none text-primary" href="#">了解更多→</a> -->
+                                <a class="d-none d-lg-block text-decoration-none more" href="#">了解更多→</a> -->
                             </div>
                         </div>
                     </div>
@@ -678,7 +690,7 @@
 
     <section class="container-fluid cases mt-5">
         <div class="container">
-            <h2 class="text-center mb-4">進階方案比較</h2>
+            <h2 class="text-center mt-4 mb-4">進階方案比較</h2>
         </div>
         <div class="card-group ">
 
