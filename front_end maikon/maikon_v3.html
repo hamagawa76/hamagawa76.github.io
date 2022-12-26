@@ -11,13 +11,18 @@
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        *{
+            font-family: "Roboto", Sans-serif;
+
+     
+        }
         .mobile {
             display: none;
         }
 
         header {
             height: 10vh;
-            width:100%;
+            width: 100%;
             position: fixed;
             top: 0;
             left: 0;
@@ -81,9 +86,7 @@
             display: none;
         }
 
-        input {
-            display: none;
-        }
+
 
         .kv img {
             max-width: 100%;
@@ -92,6 +95,10 @@
             margin: auto;
         }
 
+        section[class *="section-"]{
+            margin-top: 10vh;
+        }
+    
         .section-kv,
         .section-question {
             width: 100%;
@@ -357,6 +364,10 @@
             margin: 0;
         }
 
+        .section-step .arrow {
+            display: none;
+        }
+
 
         /* team */
         .section-team {
@@ -462,17 +473,36 @@
         }
 
         .section-form .content-box {
-            width: 90%;
+            width: 70%;
+            /* height: 100%; */
             background-color: #fff;
             border-radius: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .section-form .content-box input {
-            width: 100%;
-            z-index: 2;
+            width: 70%;
+            height: 30px;
+            /* z-index: 2; */
+        }
+
+        .section-form .content-box form,
+        .section-form h2 {
+            padding-left: 15px;
+        }
+
+        .section-form .content-box form {
+            width: 90%;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            /* z-index: 2; */
         }
 
         .section-form .content-box a {
+            width: 20%;
             text-decoration: none;
             padding: 12px 15px;
             text-align: center;
@@ -500,10 +530,24 @@
         .section-subscribe .form-box {
             display: flex;
             justify-content: center;
+            align-items: center;
+        }
+
+        .section-subscribe .form-box form {
+            height: 100%;
+            width: 50%;
+            display: flex;
+            justify-content: end;
+        }
+
+        .section-subscribe .form-box form input {
+            height: 30px;
+            width: 100%;
         }
 
         .section-subscribe h2 {
             text-align: center;
+            width: 100%;
         }
 
         .section-subscribe .form-box a {
@@ -516,6 +560,7 @@
             color: #fff;
             border-radius: 3px;
             margin: 15px;
+            margin-left: -15px;
             box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
         }
 
@@ -569,8 +614,43 @@
         footer .card .row {
             width: 30%;
             display: flex;
-            justify-content: space-evenly;
+            justify-content: start;
 
+        }
+
+        footer .card .row a {
+
+            /* border-radius: 50%; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:0 2%;
+        }
+
+        footer .card .row a:first {
+            margin-left: 0;
+
+        }
+
+        footer .card .row a i {
+            border: 1px solid #5d6678;
+            color: #5d6678;
+            background: #FFF;
+            border-radius: 100%;
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            font-size: 15px;
+
+        }
+
+        footer .card .row a i:hover {
+            border: 1px solid #1fde82;
+            color: #fff;
+            background: #1fde82;
+            transition: 0.5s;
         }
 
         footer .copyright p {
@@ -595,12 +675,12 @@
             margin: 10px 20px;
         }
 
-        footer .privacy a{
-            color:#5d6678;
+        footer .privacy a {
+            color: #5d6678;
         }
 
-        footer .privacy a:hover{
-            color:#1fde82;
+        footer .privacy a:hover {
+            color: #1fde82;
         }
 
 
@@ -608,15 +688,9 @@
 
         /* @media screen and (max-width:767px){} */
         @media screen and (width<768px) {
-            .mobile {
-                display: block;
-            }
 
-            .normal {
-                display: none;
-            }
 
-            .main-header .logo img{
+            .main-header .logo img {
                 padding: 10px;
             }
 
@@ -899,7 +973,7 @@
                 padding: 10px;
                 background-color: #fff;
                 /* 讓選單定位 */
-          
+
             }
 
             .main-nav-box {
@@ -1017,8 +1091,7 @@
 
             footer .card .row {
                 width: 50%;
-                display: flex;
-                justify-content: space-evenly;
+
             }
 
             footer img {
@@ -1064,7 +1137,7 @@
                 padding: 10px;
                 background-color: #fff;
                 /* 讓選單定位 */
-        
+
             }
 
             .main-nav-box {
@@ -1114,6 +1187,24 @@
             .step-box .txt {
                 width: 30%;
             }
+
+            .section-step .icon-box {
+                position: relative;
+            }
+
+            .section-step .arrow {
+                display: block;
+                position: absolute;
+                right: 100%;
+                z-index: -1;
+            }
+
+            .section-step .icon-even .arrow {
+                left: 95%;
+                z-index: 1;
+            }
+
+
 
             /* team */
             .section-team .content-box {
@@ -1186,15 +1277,13 @@
 
             footer .card .row {
                 width: 80%;
-                display: flex;
-                justify-content: space-evenly;
             }
 
             footer img {
                 width: 50%;
             }
 
-            footer .copyright{
+            footer .copyright {
                 display: flex;
                 justify-content: space-between;
             }
@@ -1376,10 +1465,18 @@
         </div>
     </section>
     <section class="section-step">
+
+
+
         <h2>Steps of our work</h2>
         <div class="step-box">
-            <div class="icon">
-                <img src="./maikon_pic/icon1.svg" alt="">
+            <div class="icon-box">
+                <div class="icon">
+                    <img src="./maikon_pic/icon1.svg" alt="">
+                </div>
+                <div class="arrow">
+                    <img src="./maikon_pic/arrow-1.svg" alt="">
+                </div>
             </div>
             <div class="txt">
                 <h3>Meeting With The Customer</h3>
@@ -1390,9 +1487,15 @@
             </div>
         </div>
 
+
         <div class="step-box">
-            <div class="icon">
-                <img src="./maikon_pic/icon2.svg" alt="">
+            <div class="icon-box icon-even">
+                <div class="icon">
+                    <img src="./maikon_pic/icon2.svg" alt="">
+                </div>
+                <div class="arrow">
+                    <img src="./maikon_pic/arrow-2.svg" alt="">
+                </div>
             </div>
             <div class="txt">
                 <h3>We Consider And Analyze The Work Plan</h3>
@@ -1404,8 +1507,13 @@
         </div>
 
         <div class="step-box">
-            <div class="icon">
-                <img src="./maikon_pic/icon3.svg" alt="">
+            <div class="icon-box">
+                <div class="icon">
+                    <img src="./maikon_pic/icon3.svg" alt="">
+                </div>
+                <div class="arrow">
+                    <img src="./maikon_pic/arrow-3.svg" alt="">
+                </div>
             </div>
             <div class="txt">
                 <h3>Work Hard On The Project</h3>
@@ -1416,9 +1524,14 @@
             </div>
         </div>
 
-        <div class="step-box">
-            <div class="icon">
-                <img src="./maikon_pic/icon4.svg" alt="">
+        <div class="step-box icon-even">
+            <div class="icon-box">
+                <div class="icon">
+                    <img src="./maikon_pic/icon4.svg" alt="">
+                </div>
+                <div class="arrow">
+                    <img src="./maikon_pic/arrow-2.svg" alt="">
+                </div>
             </div>
             <div class="txt">
                 <h3>Once Again We Analyze And Check Everything</h3>
@@ -1430,8 +1543,10 @@
         </div>
 
         <div class="step-box">
-            <div class="icon">
-                <img src="./maikon_pic/icon5.svg" alt="">
+            <div class="icon-box">
+                <div class="icon">
+                    <img src="./maikon_pic/icon5.svg" alt="">
+                </div>
             </div>
             <div class="txt">
                 <h3>We Finish The Work And Give It To The Customer</h3>
@@ -1539,18 +1654,12 @@
                         <a href="">
                             <i class="fa-brands fa-youtube fa-xl"></i>
                         </a>
-
-
                         <a href="">
-                            <i class="fa-brands fa-facebook fa-xl"></i>
+                            <i class="fa-brands fa-facebook-f fa-xl"></i>
                         </a>
-
-
                         <a href="">
                             <i class="fa-brands fa-instagram fa-xl"></i>
                         </a>
-
-
                         <a href="">
                             <i class="fa-brands fa-twitter fa-xl"></i>
                         </a>
