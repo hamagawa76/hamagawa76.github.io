@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .mobile {
+            display: none;
+        }
+
+        header {
+            height: 10vh;
+            width:100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            background-color: #fff;
+            /* 讓選單定位 */
+            /* position: relative; */
+            position: fixed;
+        }
+
+        .logo h1 {
+            width: 140px;
+            /* max-height: 100%; */
+
+        }
+
+        .logo img {
+            /* height: 100%; */
+            max-width: 100%;
+            border: none;
+            -webkit-border-radius: 0;
+            border-radius: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            vertical-align: middle;
+        }
+
+        .main-nav {
+            width: 100%;
+        }
+
+
+        .main-nav-box a {
+            /* display: block; */
+            padding: 10px 10px;
+            text-decoration: none;
+            color: #5d6678;
+            font-size: 16px;
+        }
+
+        .main-nav-btn {
+            border: 1px solid #eee;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        .main-nav-btn a {
+            text-decoration: none;
+            color: #5d6678;
+        }
+
+
+        .step-nav {
+            display: none;
+        }
+
+        input {
+            display: none;
+        }
+
+        .kv img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: auto;
+        }
+
+        .section-kv,
+        .section-question {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .section-kv .kv-creativity,
+        .section-question .ques-box {
+            width: 90%;
+        }
+
+        .content-box,
+        .kv {
+            width: 50%;
+        }
+
+        .kv-creativity .content-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .kv-creativity,
+        .ques-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kv-creativity h2,
+        .ques-box h2 {
+            font-size: 40px;
+            color: #1d273B;
+        }
+
+        .kv-creativity p,
+        .ques-box p {
+            width: 90%;
+            color: #5d6678;
+        }
+
+        .kv-creativity .txt,
+        .ques-box .txt {
+
+            padding-right: 20px;
+        }
+
+        .kv-creativity .btns,
+        .ques-box .btns {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            margin-top: 20px;
+        }
+
+        .kv-creativity .btns i {
+            font-size: 36px;
+            vertical-align: middle;
+        }
+
+        .kv-creativity .btns a,
+        .ques-box .btns a {
+            text-decoration: none;
+            padding: 12px 15px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #1d273B;
+        }
+
+        .kv-creativity .btns a:first-child,
+        .ques-box .btns a:first-child {
+            background-color: #1fde82;
+            color: #fff;
+            border-radius: 3px;
+            margin-right: 20px;
+            box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+            ;
+        }
+
+        .kv-creativity .btns a:first-child:hover,
+        .ques-box .btns a:first-child:hover {
+            background-color: #5d6678;
+            transition: 0.5s;
+            box-shadow: 0px 0px 0em #1fde82;
+        }
+
+        .section-kv .kv-creativity:last-child {
+            flex-direction: row-reverse;
+        }
+
+        .section-kv .kv-creativity:last-child .btns a:last-child,
+        .ques-box .btns a:last-child {
+            border: 1px solid #eee;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        /* services */
+        .section-service {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .section-service h2 {
+            width: 50%;
+            font-size: 28px;
+        }
+
+        .section-service .card-box {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-service .card-box .card {
+            width: 28%;
+            padding: 48px 40px 42px 42px;
+            margin: 15px;
+            box-shadow: 0px 4px 44px 0px rgb(17 29 48 / 6%);
+            border-radius: 10px 10px 10px 10px;
+        }
+
+        .section-service .card-box .card img {
+            border-radius: 50% 50% 50% 50%;
+            box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%)
+        }
+
+        .section-service .card-box .card h3 {
+            font-size: 22px;
+            color: #1d273B;
+        }
+
+        .section-service .card-box .card p {
+            font-size: 14px;
+            color: #5d6678;
+            margin: 0 0 14px;
+        }
+
+        .section-service .card-box .card a {
+            font-size: 14px;
+            color: #1d273B;
+            text-decoration: none;
+        }
+
+        .section-service .card-box .card a:hover {
+            font-size: 14px;
+            color: #1fde82;
+            text-decoration: none;
+        }
+
+        /* why */
+        .why-box .card-box .card h3 {
+            text-align: center;
+        }
+
+        .why-box .card-box .card h3 span {
+            text-align: center;
+        }
+
+        .section-why {
+            width: 100%;
+            background-color: #2570ff;
+            color: #fff;
+            padding: 40px 0;
+        }
+
+        .why-box {
+            display: flex;
+            flex-direction: row-reverse;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .why-box .content-box {
+            padding: 40px 40px;
+            align-self: start;
+        }
+
+        .why-box .content-box .btns {
+            margin-top: 30px;
+        }
+
+        .why-box .content-box a {
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            border: 1px solid #eee;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+
+        .why-box .content-box a:hover {
+            background-color: #1fde82;
+            transition: 0.5s;
+            box-shadow: 0px 0px 0em #1fde82;
+            border: 1px solid #1fde82;
+
+        }
+
+        .why-box .flex-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+        }
+
+        .why-box .flex-box,
+        .why-box .content-box {
+            width: 50%;
+
+        }
+
+        .why-box .flex-box .card-box {
+            display: flex;
+        }
+
+        .why-box .card-box .card {
+            margin: 15px;
+            padding: 15px;
+            background-color: #3f81ff;
+            width: 50%;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+        .why-box .card-box .card h3 {
+            font-size: 14px;
+            color: #f2f5fc;
+            margin: 0 0 14px;
+        }
+
+        .why-box .card-box .card h3 span {
+            font-size: 34px;
+        }
+
+        /* step */
+
+        .section-step {
+            width: 100%;
+        }
+
+        .section-step .step-box {
+            margin: 20px 0;
+        }
+
+        .section-step .icon img {
+            border-radius: 50% 50% 50% 50%;
+            box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%)
+        }
+
+        .section-step .kv {
+            display: flex;
+            justify-content: start;
+        }
+
+        .section-step .kv img {
+            margin: 0;
+        }
+
+
+        /* team */
+        .section-team {
+            width: 100%;
+            background-color: #f2f5fc;
+        }
+
+        .section-team .content-box {
+            margin-bottom: 30px;
+        }
+
+        .section-team .content-box a {
+            text-decoration: none;
+            padding: 12px 15px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            background-color: #1fde82;
+            color: #fff;
+            border-radius: 3px;
+            margin: 15px;
+            box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+        }
+
+        .section-team .content-box a:hover {
+            background-color: #5d6678;
+            transition: 0.5s;
+            box-shadow: 0px 0px 0em #1fde82;
+        }
+
+
+
+        .section-team .card-box .card:first-child {
+            background-image: url(./maikon_pic/project-1.jpg);
+
+        }
+
+        .section-team .card-box .card:nth-child(2) {
+            background-image: url(./maikon_pic/project-2.jpg);
+
+        }
+
+        .section-team .card-box .card:last-child {
+            background-image: url(./maikon_pic/project-3.jpg);
+        }
+
+        .section-team .card-box .card {
+            width: 100%;
+            height: 45vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            border-radius: 20px;
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .section-team .card .subcard {
+            position: absolute;
+            background-color: #1fde82;
+            opacity: 0.95;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            border-radius: 20px;
+            left: 100%;
+            display: none;
+        }
+
+        .section-team .card:hover .subcard {
+            display: flex;
+            left: 0;
+            transition: 1s;
+        }
+
+        .section-team .card .subcard h3 {
+            color: #fff;
+            margin-left: 20px;
+
+        }
+
+        .section-team .card .subcard a {
+            text-decoration: none;
+            color: #fff;
+            border-radius: 3px;
+            margin-left: 20px;
+        }
+
+        .section-team .card .subcard a:hover {
+            color: #5d6678;
+            transition: 0.5s;
+        }
+
+        /* form */
+        .section-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(247, 250, 255, 0.32);
+        }
+
+        .section-form .content-box {
+            width: 90%;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+
+        .section-form .content-box input {
+            width: 100%;
+            z-index: 2;
+        }
+
+        .section-form .content-box a {
+            text-decoration: none;
+            padding: 12px 15px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            background-color: #1fde82;
+            color: #fff;
+            border-radius: 3px;
+            margin: 15px;
+            box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+        }
+
+        .section-form .content-box a:hover {
+            background-color: #5d6678;
+            transition: 0.5s;
+            box-shadow: 0px 0px 0em #1fde82;
+        }
+
+        /* subscribe */
+        .section-subscribe {
+            width: 100%;
+            background-color: rgba(247, 250, 255, 0.32);
+        }
+
+        .section-subscribe .form-box {
+            display: flex;
+            justify-content: center;
+        }
+
+        .section-subscribe h2 {
+            text-align: center;
+        }
+
+        .section-subscribe .form-box a {
+            text-decoration: none;
+            padding: 12px 15px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            background-color: #1fde82;
+            color: #fff;
+            border-radius: 3px;
+            margin: 15px;
+            box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+        }
+
+        .section-subscribe .form-box a:hover {
+            background-color: #5d6678;
+            transition: 0.5s;
+            box-shadow: 0px 0px 0em #1fde82;
+        }
+
+        /* footer */
+        footer {
+            width: 100%;
+        }
+
+
+        footer h3 {
+            font-size: 28px;
+        }
+
+        footer img {
+            width: 20%
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #5d6678;
+            padding: 10px 0;
+        }
+
+        footer a:hover {
+
+            color: #1fde82;
+
+        }
+
+        footer .card {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+
+        footer .flex-box .card span {
+            color: #1fde82;
+        }
+
+        footer .flex-box .card h4 {
+            padding: 0 0;
+            margin-bottom: 15px;
+        }
+
+        footer .card .row {
+            width: 30%;
+            display: flex;
+            justify-content: space-evenly;
+
+        }
+
+        footer .copyright p {
+            text-align: center;
+            color: #5d6678;
+        }
+
+        footer .copyright a {
+            color: #1fde82;
+        }
+
+        footer .copyright a:hover {
+            color: #5d6678;
+        }
+
+        footer .privacy {
+            display: flex;
+            justify-content: center;
+        }
+
+        footer .privacy p {
+            margin: 10px 20px;
+        }
+
+        footer .privacy a{
+            color:#5d6678;
+        }
+
+        footer .privacy a:hover{
+            color:#1fde82;
+        }
+
+
+
+
+        /* @media screen and (max-width:767px){} */
+        @media screen and (width<768px) {
+            .mobile {
+                display: block;
+            }
+
+            .normal {
+                display: none;
+            }
+
+            .main-header .logo img{
+                padding: 10px;
+            }
+
+            .HB {
+                width: 40px;
+                height: 40px;
+                background-color: #1fde82;
+                /* 漢堡線排列 */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                border-radius: 2px;
+                margin: 10px;
+            }
+
+
+            .HB span {
+                width: 21.875px;
+                height: 2px;
+                background-color: #fff;
+                margin: 3px 0;
+            }
+
+            .main-nav {
+                position: absolute;
+                background-color: #fff;
+                top: 0;
+                right: 0;
+                display: none;
+                transition: 0.5s;
+            }
+
+            .main-nav label {
+                padding-top: 10px;
+                margin-right: 10px;
+                margin-left: auto;
+            }
+
+            .main-nav div {
+                padding: 0;
+            }
+
+            .main-nav-box a:first-child {
+                border-bottom: 1px solid gray;
+            }
+
+            #menu-control:checked~.main-header .main-nav {
+                position: fixed;
+                right: 0%;
+                display: block;
+                height: 100vh;
+                box-shadow: -1em 0 12em gray;
+
+            }
+
+            #menu-control:checked~.main-header .HB span:nth-child(2) {
+                display: none;
+            }
+
+            #menu-control:checked~.main-header .HB span:first-child {
+                position: absolute;
+                align-self: center;
+                transform: rotate(45deg);
+            }
+
+            #menu-control:checked~.main-header .HB span:last-child {
+                position: absolute;
+                align-self: center;
+                transform: rotate(135deg);
+            }
+
+            .main-nav-btn {
+                display: none;
+            }
+
+            .main-nav {
+                width: 70%;
+            }
+
+            .main-nav a {
+                display: block;
+            }
+
+            .main-nav-box {
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+                flex-wrap: wrap;
+                font-size: 24px;
+                position: relative;
+            }
+
+            /* .LHB-box{
+                position: absolute;
+                left:60px;
+            } */
+
+            .LHB {
+                position: relative;
+                width: 20px;
+                height: 20px;
+                /* 漢堡線排列 */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 30px;
+            }
+
+            .LHB span {
+                width: 80%;
+                height: 2px;
+                background-color: gray;
+            }
+
+            .LHB span:first-child {
+                position: absolute;
+                align-self: center;
+                transform: rotate(45deg);
+            }
+
+            .LHB span:last-child {
+                position: absolute;
+                align-self: center;
+                transform: rotate(135deg);
+            }
+
+            .content-box,
+            .kv {
+                width: 100%;
+            }
+
+            /* kv */
+
+            h2 {
+                width: 100%;
+            }
+
+            .kv-creativity,
+            .ques-box {
+                flex-direction: column;
+            }
+
+            .kv-creativity:last-child {
+                flex-direction: column-reverse;
+            }
+
+            .kv-creativity h2,
+            .ques-box h2 {
+                font-size: 32px;
+                color: #1d273B;
+            }
+
+            .kv-creativity p,
+            .ques-box p {
+                width: 100%;
+                font-size: 14px;
+
+            }
+
+            .kv-creativity .content-box,
+            .kv-creativity .kv,
+            .ques-box .content-box,
+            .ques-box .kv {
+                width: 100%;
+            }
+
+            .kv-creativity .txt,
+            .ques-box .txt {
+
+                padding-left: 0px;
+            }
+
+            .kv-creativity:first-child .btns {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .kv-creativity .btns a:last-child,
+            .ques-box .btns a:last-child {
+                margin-left: 20%;
+            }
+
+            .section-kv .kv-creativity:last-child {
+                flex-direction: column-reverse;
+            }
+
+            /* service */
+
+            .section-service h2 {
+                width: 100%;
+                font-size: 30px;
+            }
+
+            .section-service .card-box {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .section-service .card-box .card {
+                width: 100%;
+            }
+
+            /* question */
+            .ques-box .kv {
+                display: flex;
+                justify-content: end;
+                margin: 30px 0;
+            }
+
+            /* why */
+            .why-box .flex-box,
+            .why-box .content-box,
+            .why-box .card-box {
+                width: 100%;
+
+            }
+
+
+            .why-box .card-box .card {
+                width: 95%;
+                margin: 15px 0;
+                padding: 15px 0;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .why-box .content-box {
+                width: 95%;
+                padding: 10px;
+            }
+
+            .why-box,
+            .why-box .card-box {
+                flex-direction: column-reverse;
+            }
+
+            .card-box {
+                justify-content: center;
+            }
+
+        }
+
+        @media screen and (width>=768px) {
+            h2 {
+                width: 85%;
+            }
+
+            .mobile {
+                display: none;
+            }
+
+            .normal {
+                display: block;
+            }
+
+            /* 漢堡拿掉 */
+            .HB {
+                display: none;
+            }
+
+            .LHB {
+                display: none;
+            }
+
+            .logo {
+                margin-left: 20px;
+            }
+
+            .main-nav-btn {
+                display: block;
+                margin-right: 20px;
+            }
+
+            .main-header {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                background-color: #fff;
+                /* 讓選單定位 */
+          
+            }
+
+            .main-nav-box {
+                margin-left: auto;
+            }
+
+            .main-nav-box a:first-child {
+                border-bottom: 2px solid gray;
+                margin-bottom: -2px;
+            }
+
+            .main-nav-box a:hover {
+                border-bottom: 2px solid gray;
+                margin-bottom: -2px;
+                transition: 0.2s;
+            }
+
+            .main-nav-box {
+                display: flex;
+                position: relative;
+                justify-content: end;
+                align-items: center;
+                padding: 10px;
+                flex-wrap: wrap;
+            }
+
+            /* step */
+            .step-box {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+            }
+
+            .step-box .kv {
+                justify-content: center;
+                width: auto;
+            }
+
+            .step-box .icon {
+                margin: 10px;
+                width: 10%;
+            }
+
+            .step-box .txt {
+                width: 50%;
+            }
+
+            .section-step .step-box:nth-child(even) .kv {
+                order: -1;
+            }
+
+            /* team */
+            .section-team .content-box {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .section-team .content-box h2 {
+                width: 30%;
+                font-size: 28px;
+
+            }
+
+            .section-team .content-box a {
+                width: 15%;
+                font-size: 14px;
+                position: absolute;
+                right: 0;
+                top: 100%;
+            }
+
+            .section-team .card-box {
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .section-team .card-box .card {
+                width: 30%;
+                height: 35vh;
+                background-repeat: no-repeat;
+                background-size: cover;
+                /* background-position: 100% 100%; */
+                border-radius: 20px;
+                position: relative;
+                margin: 30px 0;
+            }
+
+
+
+            /* form */
+            .section-form {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .section-form .kv,
+            .section-form .content-box {
+                width: 50%;
+            }
+
+            /* footer */
+            footer .card-box {
+                width: 100%;
+                display: flex;
+                justify-content: start;
+            }
+
+            footer .card-box .card {
+                width: 50%;
+            }
+
+            footer .card .row {
+                width: 50%;
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            footer img {
+                width: 40%;
+            }
+
+        }
+
+        @media screen and (width>=1024px) {
+            h2 {
+                width: 85%;
+            }
+
+            .mobile {
+                display: none;
+            }
+
+            .normal {
+                display: block;
+            }
+
+            /* 漢堡拿掉 */
+            .HB {
+                display: none;
+            }
+
+            .LHB {
+                display: none;
+            }
+
+            .logo {
+                margin-left: 20px;
+            }
+
+            .main-nav-btn {
+                display: block;
+                margin-right: 20px;
+            }
+
+            .main-header {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                background-color: #fff;
+                /* 讓選單定位 */
+        
+            }
+
+            .main-nav-box {
+                margin-left: auto;
+            }
+
+            .main-nav-box a:first-child {
+                border-bottom: 2px solid gray;
+                margin-bottom: -2px;
+            }
+
+            .main-nav-box a:hover {
+                border-bottom: 2px solid gray;
+                margin-bottom: -2px;
+                transition: 0.2s;
+            }
+
+            .main-nav-box {
+                display: flex;
+                position: relative;
+                justify-content: end;
+                align-items: center;
+                padding: 10px;
+                flex-wrap: wrap;
+            }
+
+            /* why */
+            .why-box .card-box .card h3 {
+                text-align: start;
+                font-size: 14px;
+                color: #f2f5fc;
+                margin: 0 0 14px;
+            }
+
+            .why-box .card-box .card h3 span {
+                font-size: 58px;
+                text-align: start;
+            }
+
+            /* step */
+            .step-box {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .step-box .txt {
+                width: 30%;
+            }
+
+            /* team */
+            .section-team .content-box {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+            }
+
+            .section-team .content-box h2 {
+                width: 30%;
+                font-size: 42px;
+
+            }
+
+            .section-team .content-box a {
+                width: 15%;
+                font-size: 14px;
+                position: absolute;
+                right: 0;
+                top: 50%;
+            }
+
+            .section-team .card-box {
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            .section-team .card-box .card {
+                width: 30%;
+                height: 60vh;
+                background-repeat: no-repeat;
+                background-size: cover;
+                /* background-position: 100% 100%; */
+                border-radius: 20px;
+                position: relative;
+                margin: 30px 0;
+            }
+
+            .section-team .subcard h3 {
+                width: 30%;
+                font-size: 38px;
+
+            }
+
+            .section-team .subcard {
+                position: relative;
+            }
+
+            .section-team .subcard a {
+                position: absolute;
+                right: -10%;
+                top: 50%;
+            }
+
+            /* footer */
+            footer .flex-box {
+                display: flex;
+            }
+
+            footer .card-box {
+                width: 100%;
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            footer .card-box .card {
+                width: 100%;
+            }
+
+            footer .card .row {
+                width: 80%;
+                display: flex;
+                justify-content: space-evenly;
+            }
+
+            footer img {
+                width: 50%;
+            }
+
+            footer .copyright{
+                display: flex;
+                justify-content: space-between;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="list" id="menu-control">
+    <header class="main-header">
+        <div class="logo">
+            <h1>
+                <a href="#"><img src="./maikon_pic/logo-retina.webp"></a>
+            </h1>
+        </div>
+        <!-- -------------- -->
+        <label for="menu-control" class="HB">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <!-- -------------- -->
+        <div class="main-nav">
+            <div class="LHB-box">
+                <label for="menu-control" class="LHB">
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+            <div class="main-nav-box">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Team</a>
+                <a href="#">Case studio</a>
+                <a href="#">Cotancts</a>
+            </div>
+        </div>
+        <div class="main-nav-btn">
+            <a href="#">SUBSCRIBE</a>
+        </div>
+    </header>
+    <section class="section-kv">
+        <div class="kv-creativity">
+            <div class="content-box">
+                <div class="txt">
+                    <h2>Our creativity is
+                        you
+                        success</h2>
+                    <p>We break all boundaries if they happen on our way of project’s development!</p>
+                </div>
+                <div class="btns">
+                    <a class="" href="">Learn MORE</a>
+                    <a class="" href="">WATCH VIDEO
+                        <i class="fa-regular fa-circle-play"></i>
+
+                    </a>
+                </div>
+            </div>
+            <div class="kv">
+                <img src="./maikon_pic/kv-1.svg" alt="">
+            </div>
+        </div>
+        <div class="kv-creativity">
+            <div class="content-box">
+                <div class="txt">
+                    <h2>Creative challenges are our passion</h2>
+                    <p>Our team of designers and developers work closely together to build a creative and positive
+                        working environment. Functionality is as important to us as aesthetics.</p>
+                </div>
+                <div class="btns">
+                    <a class="" href="">about us</a>
+                    <a class="" href="">contact us
+                    </a>
+                </div>
+            </div>
+            <div class="kv">
+                <img src="./maikon_pic/kv-2.webp" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="section-service">
+        <h2>We provide a wide range of creative services</h2>
+        <div class="card-box">
+            <div class="card">
+                <img src="./maikon_pic/card1.svg" alt="">
+                <h3 class="card-title">Web Design & Brending</h3>
+                <p>A great brand combines design and conveys company’s value messaging to evoke emotion and drive
+                    strategy.</p>
+                <a href="">READ MORE</a>
+            </div>
+            <div class="card">
+                <img src="./maikon_pic/card2.svg" alt="">
+                <h3 class="card-title">Graphic Design</h3>
+                <p>Rich experience plus unlimited imagination create our successful service discovered by clients.</p>
+                <a href="">READ MORE</a>
+            </div>
+            <div class="card">
+                <img src="./maikon_pic/card3.svg" alt="">
+                <h3 class="card-title">Video Production</h3>
+                <p>Creating and handling professional video is our strong point. It plays major role in your digital
+                    business strategy.</p>
+                <a href="">READ MORE</a>
+            </div>
+        </div>
+        <div class="card-box">
+            <div class="card">
+                <img src="./maikon_pic/card4.svg" alt="">
+                <h3 class="card-title">SEO</h3>
+                <p>We provide everything your site needs to perform at it’s highest capabilities on the major search
+                    engines.</p>
+                <a href="">READ MORE</a>
+            </div>
+            <div class="card">
+                <img src="./maikon_pic/card5.svg" alt="">
+                <h3 class="card-title">Digital Marketing</h3>
+                <p>We do collateral design, interactive design, hoarding, signage, presentation centres, and more.</p>
+                <a href="">READ MORE</a>
+            </div>
+            <div class="card">
+                <img src="./maikon_pic/card6.svg" alt="">
+                <h3 class="card-title">Infographics</h3>
+                <p>Turn your data into captivating artwork that will keep your audience engaged. Our team can help you
+                    with it..</p>
+                <a href="">READ MORE</a>
+            </div>
+        </div>
+    </section>
+    <section class="section-question">
+        <div class="ques-box">
+            <div class="content-box">
+                <div class="txt">
+                    <h2>If you have any questions, please contact us</h2>
+                    <p>Our professional support team try to do their best to provide you with high-quality consultations
+                        concerning any question about our services.</p>
+                </div>
+                <div class="btns">
+                    <a class="" href="">contact us</a>
+                    <a class="" href="">subscribe
+                    </a>
+                </div>
+            </div>
+            <div class="kv">
+                <img src="./maikon_pic/kv-3.svg" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="section-why">
+        <div class="why-box">
+            <div class="content-box">
+                <div class="txt">
+                    <h2>Why choose our studio for your projects?</h2>
+                    <p>We are a command of professional and enthusiastic people, who like what they do and are always in
+                        the process of growing and improving their skills.</p>
+                </div>
+                <div class="btns">
+                    <a class="" href="">order service</a>
+                </div>
+            </div>
+            <div class="flex-box">
+                <div class="card-box">
+                    <div class="card">
+                        <h3><span>1800+</span><br>Completed projects to the end by our specialists.</h3>
+                    </div>
+                    <div class="card">
+                        <h3><span>56</span><br>A large team of the best specialists.</h3>
+                    </div>
+                </div>
+                <div class="card-box">
+                    <div class="card">
+                        <h3><span>2000+</span><br>Customers who were satisfied with our work.</h3>
+                    </div>
+                    <div class="card">
+                        <h3><span>100%</span><br>Our values are good organization and result orientation.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-step">
+        <h2>Steps of our work</h2>
+        <div class="step-box">
+            <div class="icon">
+                <img src="./maikon_pic/icon1.svg" alt="">
+            </div>
+            <div class="txt">
+                <h3>Meeting With The Customer</h3>
+                <p>The first meeting is very import to form contact and discuss the main ideas of the project.</p>
+            </div>
+            <div class="kv">
+                <img src="./maikon_pic/step1.svg" alt="">
+            </div>
+        </div>
+
+        <div class="step-box">
+            <div class="icon">
+                <img src="./maikon_pic/icon2.svg" alt="">
+            </div>
+            <div class="txt">
+                <h3>We Consider And Analyze The Work Plan</h3>
+                <p>When we understand the main eideas, we proceed to discussing the work plan and analyzing it.</p>
+            </div>
+            <div class="kv">
+                <img src="./maikon_pic/step2.svg" alt="">
+            </div>
+        </div>
+
+        <div class="step-box">
+            <div class="icon">
+                <img src="./maikon_pic/icon3.svg" alt="">
+            </div>
+            <div class="txt">
+                <h3>Work Hard On The Project</h3>
+                <p>Our professional team start to handle with your project and embody the conception of the project.</p>
+            </div>
+            <div class="kv">
+                <img src="./maikon_pic/step3.svg" alt="">
+            </div>
+        </div>
+
+        <div class="step-box">
+            <div class="icon">
+                <img src="./maikon_pic/icon4.svg" alt="">
+            </div>
+            <div class="txt">
+                <h3>Once Again We Analyze And Check Everything</h3>
+                <p>We meet, analyze and check the done work and make needed corrections.</p>
+            </div>
+            <div class="kv">
+                <img src="./maikon_pic/step4.svg" alt="">
+            </div>
+        </div>
+
+        <div class="step-box">
+            <div class="icon">
+                <img src="./maikon_pic/icon5.svg" alt="">
+            </div>
+            <div class="txt">
+                <h3>We Finish The Work And Give It To The Customer</h3>
+                <p>The project is ready and we give it to the customer. Also we ask for the feedback from the customer.
+                </p>
+            </div>
+            <div class="kv">
+                <img src="./maikon_pic/step5.svg" alt="">
+            </div>
+        </div>
+        </div>
+
+
+
+    </section>
+    <section class="section-team">
+        <div class="content-box">
+            <h2>Our team's work with Projects</h2>
+            <a href="">all projects</a>
+        </div>
+        <div class="card-box">
+            <div class="card">
+                <div class="subcard">
+                    <h3>Minimal Creative "Impuls"</h3>
+                    <a href="">VIEW SITE</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="subcard">
+                    <h3>Travel Company "Tour Up"</h3>
+                    <a href="">VIEW SITE</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="subcard">
+                    <h3>Restaurant Pizza "Little Italy"</h3>
+                    <a href="">VIEW SITE</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section-form">
+        <div class="kv">
+            <img src="./maikon_pic/form-kv.svg" alt="">
+        </div>
+        <div class="content-box">
+            <h2>Sign up for our consultation</h2>
+            <form action="">
+                <input type="text" name="UserName" placeholder="Name"><br>
+                <input type="text" name="email" placeholder="Email"><br>
+                <input type="text" name="masage" placeholder="Message"><br>
+            </form>
+            <a href="">Send</a>
+        </div>
+    </section>
+
+    <section class="section-subscribe">
+        <h2>Subscribe to our news and learn more</h2>
+        <div class="form-box">
+            <form action="">
+                <input type="text" name="submail" placeholder="Your email">
+            </form>
+            <a href="">subscribe</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="flex-box">
+            <div class="card-box">
+                <div class="card logo">
+                    <h3><img src="./maikon_pic/logo-retina.webp" alt=""></h3>
+                    <a href="">
+                        <span:>Phone:</span>
+                            + 1 (045) - 224 - 12 - 67
+                    </a>
+                    <a href="">
+                        <span:>Mail:</span>
+                            info@demolink.org
+                    </a>
+                </div>
+                <div class="card">
+                    <h3>Services</h3>
+                    <a href="">Web design & brending</a>
+                    <a href="">Web development</a>
+                    <a href="">Full Optimization</a>
+                    <a href="">Research & Strategy</a>
+                    <a href="">Management & Marketing</a>
+                    <a href="">Free support</a>
+                </div>
+            </div>
+            <div class="card-box">
+                <div class="card">
+                    <h3>About Company</h3>
+                    <a href="">About us</a>
+                    <a href="">Team</a>
+                    <a href="">Case studio</a>
+                    <a href="">Contacts</a>
+                </div>
+                <div class="card">
+                    <h3>Our Social Networks</h3>
+                    <h4>Join us in the social networks and keep up on the latest news.</h4>
+                    <div class="row">
+                        <a href="">
+                            <i class="fa-brands fa-youtube fa-xl"></i>
+                        </a>
+
+
+                        <a href="">
+                            <i class="fa-brands fa-facebook fa-xl"></i>
+                        </a>
+
+
+                        <a href="">
+                            <i class="fa-brands fa-instagram fa-xl"></i>
+                        </a>
+
+
+                        <a href="">
+                            <i class="fa-brands fa-twitter fa-xl"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2018 Wordpress Maikon. All Rights Reserved. | Theme design by <a href="">Zemez</a>
+            </p>
+            <div class="privacy">
+                <p><a href=""> Privacy & Policy</a></p>
+                <p><a href=""> FAQ</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
