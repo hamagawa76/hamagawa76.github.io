@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .output {
+            height: 50vh;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container mt-3">
+        <div class="btn-group w-100" role="group" aria-label="Basic outlined example">
+            <button id="start" type="button" class="btn btn-outline-primary" onclick="startGame()">開始</button>
+            <button id="giveup" type="button" class="btn btn-outline-primary" onclick="restart()">放棄重來</button>
+            <button id="showanswer" type="button" class="btn btn-outline-primary" onclick="showAnswer()">看答案</button>
+        </div>
+        <div class="output w-100">
+        </div>
+        <div class="input">
+            <div class="input-group mb-3">
+                <input id="num-input" type="text" class="form-control" placeholder="請輸入不重複的四位數字" aria-label="請輸入四位數字"
+                    aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    onclick="Judgement()">確認輸入</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        window.onload = function () {
+            enterBtn.disabled = true;
+            showansBtn.disabled = true;
+            giveupBtn.disabled = true;
+        }
+
+        //抓取output區域
+        let output = document.querySelector(".output");
+
+        let myInput = document.querySelector('#num-input');
+        let enterBtn = document.querySelector('#button-addon2');
+        let showansBtn = document.querySelector('#showanswer');
+        let giveupBtn = document.querySelector('#giveup');
+        let startBtn = document.querySelector('#start');
+
+
+
+
+        //製造亂數
+
+        function fisherYatesShuffle(arr) {
+            for (var i = arr.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1)); //random index
+                [arr[i], arr[j]] = [arr[j], arr[i]]; // swap
+            }
+        }
+
+        let numberArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        // let randomArray = (arr) => arr.sort(() => 0.5 - Math.random()); 不夠隨機
+        fisherYatesShuffle(numberArray);
+        let answer4 = numberArray.slice(0, 4);
+        let answerString = answer4.toString();
+        let answer = answerString.replace(/,/g, '');
+
+
+        function startGame() {
+
+            console.log(answer);
+            enterBtn.disabled = false;
+            showansBtn.disabled = false;
+            giveupBtn.disabled = false;
+        }
+
+
+        function isNumber(inputs) {
+            return parseFloat(inputs).toString() != "NaN";
+        }
+
+
+        //判斷答案
+
+        function Judgement() {
+            let myInputArray = Array.from(myInput.value);
+            console.log(myInputArray)
+            if (isNumber(myInput.value) == false) {
+                alert("偵測到非數字字元，請輸入不同的四位數數字");
+            }
+            else if (myInputArray[0] == myInputArray[1] || myInputArray[0] == myInputArray[2] || myInputArray[0] == myInputArray[3] || myInputArray[1] == myInputArray[2] ||
+                myInputArray[1] == myInputArray[3] || myInputArray[2] == myInputArray[3]) {
+                alert("輸入重複數字，請輸入不同的四位數數字");
+            }
+            else if (myInputArray.length > 4) {
+                alert("字數已超過四位數，請輸入不同的四位數數字");
+            }
+            else {
+                let a = 0;
+                let b = 0;
+                for (var i = 0; i < 4; i++) {
+                    if (myInputArray[i] == answer4[i]) {
+                        a++;
+                    }
+                    // else if (answer4.indexOf(myInputArray[i]) >= 0) {
+                    else if (answer4[i] == myInputArray[0] || answer4[i] == myInputArray[1] || answer4[i] == myInputArray[2] || answer4[i] == myInputArray[3]) {
+                        b++;
+                    }
+                }
+                if (a + b > 4) {
+                    b = b - a;
+                }
+
+
+                let showAB = `${a}A${b}B`;
+                let inputtext = myInput.value;
+                let answerLog = document.createElement("div");
+                answerLog.innerHTML = `<span>${showAB}</span> ${inputtext}`;
+                answerLog.setAttribute("class", "showlog");
+
+                output.appendChild(answerLog);
+
+                myInput.value = "";
+
+                if (a == 4) {
+                    alert(`恭喜猜對!!!答案是${answer}`);
+                    enterBtn.disabled = true;
+                    showansBtn.disabled = true;
+                    startBtn.disabled = true;
+                }
+            }
+            myInput.value = "";
+        }
+
+        function showAnswer() {
+            alert(`答案是${answer}`)
+        }
+
+        function restart() {
+            history.go();
+        }
+
+
+    </script>
+</body>
+
+</html>
