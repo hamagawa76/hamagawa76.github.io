@@ -514,11 +514,16 @@
         function saveData() {
             allcontent=[];
             for (i = 0; i < Days.length; i++) {
-                for(j=0; j<content[i].childElementCount;j++){
+                // console.log(content[i].getElementsByTagName("li").length);
+                for(j=0; j<content[i].getElementsByTagName("li").length;j++){
+
                    let data=content[i].children[j];
                    allcontent.push(data);
+                //    console.log(`data:${data} i:${i} j:${j}`);
                 }
             }
+            let JSONdata=JSON.stringify(allcontent);
+            console.log(allcontent);
             localStorage.setItem('datas',JSON.stringify(allcontent));
         }
 
