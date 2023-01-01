@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        .main {
+            position: relative;
+        }
+
+        ul {
+            flex-wrap: wrap;
+            justify-content: start;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            font-size: 12px;
+            white-space: nowrap;
+            text-align: start;
+            height: fit-content;
+            margin: 0;
+            padding: 0;
+        }
+
+        .selfbtn {
+            outline: 2px solid #eee;
+            width: calc(100%/7);
+            height: 15vh;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: start;
+        }
+
+        .radiobtn {
+            display: none;
+        }
+
+        .cal-box button {
+            width: 50px;
+            display: flex;
+            justify-content: center;
+            border: none;
+            background-color: #ffffff00;
+        }
+
+        .cal-box svg {
+            width: 100%;
+        }
+
+
+        .form-part {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #00000080;
+        }
+
+        .form-box {
+            display: none;
+        }
+
+        .form-select {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid d-flex flex-column flex-lg-row main">
+        <div class="cal-box container d-lg-flex align-items-center">
+            <div class="row">
+                <div class="col-12 d-flex align-items-center flex-column m-auto">
+                    <div class="year-box d-flex align-items-center">
+                        <button>
+                            <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-left">
+                                <path
+                                    d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" />
+                            </svg>
+                        </button>
+                        <h1 class="year"><span>2023</span>年</h1>
+                        <button>
+                            <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-right">
+                                <path
+                                    d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="month-box d-flex align-items-center">
+                        <button>
+                            <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-left">
+                                <path
+                                    d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" />
+                            </svg>
+                        </button>
+                        <h1 class="month"><span>01</span>月</h1>
+                        <button>
+                            <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-right">
+                                <path
+                                    d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h1 class="month-en"><span>January</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-3">
+            <div class="row d-flex flex-column justify-content-center align-items-center">
+                <div class="col-12 d-flex">
+                    <input type="radio" id="Day1" name="Days" class="radiobtn daily Sunday"><label class="selfbtn"
+                        for="Day1">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day2" name="Days" class="radiobtn daily Monday"><label class="selfbtn"
+                        for="Day2">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day3" name="Days" class="radiobtn daily Tuseday"><label class="selfbtn"
+                        for="Day3">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day4" name="Days" class="radiobtn daily Wendsday"><label class="selfbtn"
+                        for="Day4">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day5" name="Days" class="radiobtn daily Thursday"><label class="selfbtn"
+                        for="Day5">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day6" name="Days" class="radiobtn daily Friday"><label class="selfbtn"
+                        for="Day6">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day7" name="Days" class="radiobtn daily Saturday"><label class="selfbtn"
+                        for="Day7">
+                        <ul></ul>
+                    </label>
+                </div>
+                <div class="col-12 d-flex">
+                    <input type="radio" id="Day8" name="Days" class="radiobtn daily Sunday"><label class="selfbtn"
+                        for="Day8">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day9" name="Days" class="radiobtn daily Monday"><label class="selfbtn"
+                        for="Day9">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day10" name="Days" class="radiobtn daily Tuseday"><label class="selfbtn"
+                        for="Day10">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day11" name="Days" class="radiobtn daily Wendsday"><label class="selfbtn"
+                        for="Day11">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day12" name="Days" class="radiobtn daily Thursday"><label class="selfbtn"
+                        for="Day12">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day13" name="Days" class="radiobtn daily Friday"><label class="selfbtn"
+                        for="Day13">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day14" name="Days" class="radiobtn daily Saturday"><label class="selfbtn"
+                        for="Day14">
+                        <ul></ul>
+                    </label>
+                </div>
+                <div class="col-12 d-flex">
+                    <input type="radio" id="Day15" name="Days" class="radiobtn daily Sunday"><label class="selfbtn"
+                        for="Day15">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day16" name="Days" class="radiobtn daily Monday"><label class="selfbtn"
+                        for="Day16">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day17" name="Days" class="radiobtn daily Tuseday"><label class="selfbtn"
+                        for="Day17">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day18" name="Days" class="radiobtn daily Wendsday"><label class="selfbtn"
+                        for="Day18">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day19" name="Days" class="radiobtn daily Thursday"><label class="selfbtn"
+                        for="Day19">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day20" name="Days" class="radiobtn daily Friday"><label class="selfbtn"
+                        for="Day20">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day21" name="Days" class="radiobtn daily Saturday"><label class="selfbtn"
+                        for="Day21">
+                        <ul></ul>
+                    </label>
+                </div>
+                <div class="col-12 d-flex">
+                    <input type="radio" id="Day22" name="Days" class="radiobtn daily Sunday"><label class="selfbtn"
+                        for="Day22">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day23" name="Days" class="radiobtn daily Monday"><label class="selfbtn"
+                        for="Day23">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day24" name="Days" class="radiobtn daily Tuseday"><label class="selfbtn"
+                        for="Day24">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day25" name="Days" class="radiobtn daily Wendsday"><label class="selfbtn"
+                        for="Day25">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day26" name="Days" class="radiobtn daily Thursday"><label class="selfbtn"
+                        for="Day26">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day27" name="Days" class="radiobtn daily Friday"><label class="selfbtn"
+                        for="Day27">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day28" name="Days" class="radiobtn daily Saturday"><label class="selfbtn"
+                        for="Day28">
+                        <ul></ul>
+                    </label>
+                </div>
+                <div class="col-12 d-flex">
+                    <input type="radio" id="Day29" name="Days" class="radiobtn daily Sunday"><label class="selfbtn"
+                        for="Day29">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day30" name="Days" class="radiobtn daily Monday"><label class="selfbtn"
+                        for="Day30">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day31" name="Days" class="radiobtn daily Tuseday"><label class="selfbtn"
+                        for="Day31">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day32" name="Days" class="radiobtn daily Wendsday"><label class="selfbtn"
+                        for="Day32">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day33" name="Days" class="radiobtn daily Thursday"><label class="selfbtn"
+                        for="Day33">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day34" name="Days" class="radiobtn daily Friday"><label class="selfbtn"
+                        for="Day34">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day35" name="Days" class="radiobtn daily Saturday"><label class="selfbtn"
+                        for="Day35">
+                        <ul></ul>
+                    </label>
+                </div>
+                <div class="col-12 d-flex">
+                    <input type="radio" id="Day36" name="Days" class="radiobtn daily Sunday"><label class="selfbtn"
+                        for="Day36">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day37" name="Days" class="radiobtn daily Monday"><label class="selfbtn"
+                        for="Day37">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day38" name="Days" class="radiobtn daily Tuseday"><label class="selfbtn"
+                        for="Day38">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day39" name="Days" class="radiobtn daily Wendsday"><label class="selfbtn"
+                        for="Day39">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day40" name="Days" class="radiobtn daily Thursday"><label class="selfbtn"
+                        for="Day40">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day41" name="Days" class="radiobtn daily Friday"><label class="selfbtn"
+                        for="Day41">
+                        <ul></ul>
+                    </label>
+                    <input type="radio" id="Day42" name="Days" class="radiobtn daily Saturday"><label class="selfbtn"
+                        for="Day42">
+                        <ul></ul>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-box">
+            <div class="container form-part d-flex flex-column align-items-center justify-content-center">
+                <div class="row mt-2 mb-2">
+                    <div class="col-12">
+                        <div class="row align-items-center">
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                                <p class="m-auto">開始時間</p>
+                            </div>
+                            <div class="col-3">
+                                <select class="form-select start-hour" aria-label="Default select example">
+                                    <option selected>(時)</option>
+                                    <option value="00">00</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <p class="m-auto">時</p>
+                            </div>
+
+                            <div class="col-3">
+                                <select class="form-select start-min" aria-label="Default select example">
+                                    <option selected>(分)</option>
+                                    <option value="00">00</option>
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <p class="m-auto">分</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 mb-2">
+                    <div class="col-12">
+                        <div class="row align-items-center">
+                            <div class="col-3 d-flex align-items-center justify-content-center">
+                                <p class="m-auto">結束時間</p>
+                            </div>
+                            <div class="col-3">
+                                <select class="form-select end-hour" aria-label="Default select example">
+                                    <option selected>(時)</option>
+                                    <option value="00">00</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <p class="m-auto">時</p>
+                            </div>
+
+                            <div class="col-3">
+                                <select class="form-select end-min" aria-label="Default select example">
+                                    <option selected>(分)</option>
+                                    <option value="00">00</option>
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <p class="m-auto">分</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2 mb-2">
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="schedule-txt" class="form-label">行程描述</label>
+                            <input type="text" class="form-control" id="schedule-txt">
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-around">
+                        <button type="submit" class="btn btn-secondary cancel">刪除行程</button>
+                        <button type="submit" class="btn btn-primary enter">確認更新</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        window.onload = function () {
+            NotShowForm();
+            loadData();
+        }
+
+        
+        // let allcontent=JSON.parse(localStorage.getItem('datas'))||[];
+        let allcontent=[];
+        const ul = document.querySelector('ul');
+        const li = document.querySelector('li');
+        const daily = document.querySelectorAll('.daily');
+        const content = document.querySelectorAll('.selfbtn');
+        const form_box = document.querySelector('.form-box');
+        const starthour = document.querySelector('.start-hour');
+        const startmin = document.querySelector('.start-min');
+        const endhour = document.querySelector('.end-hour');
+        const endmin = document.querySelector('.end-min');
+        const scheduletxt = document.querySelector('#schedule-txt');
+        const enter = document.querySelector('.enter');
+        const cancel = document.querySelector('.cancel');
+        const Days = document.getElementsByName('Days');
+
+
+        //點到跳出表單
+        daily.forEach((el) => {
+            el.addEventListener('click', () => {
+                form_box.style.display = 'block';
+            })
+
+        })
+
+
+        function NotShowForm() {
+            form_box.style.display = 'none';
+        }
+        function ShowForm() {
+            form_box.style.display = 'block';
+        }
+
+
+
+
+        //資料儲存
+
+        enter.addEventListener('click', () => {
+            savesth = starthour.value.toString();
+            savestm = startmin.value.toString();
+            saveeth = endhour.value.toString();
+            saveetm = endmin.value.toString();
+            savetxt = scheduletxt.value;
+            listcontent = `${savesth}:${savestm}至${saveeth}:${saveetm}：${savetxt}`;
+            NotShowForm()
+            for (i = 0; i < Days.length; i++) {
+                if (Days[i].checked) {
+                    let createli = document.createElement('li');
+                    createli.innerText = listcontent;
+                    // let addul=document.createElement('ul');
+                    // // let selectedul=Days[i].ul;
+                    // addul.appendChild(createli);
+                    content[i].children[0].appendChild(createli);
+                    console.log(createli);
+                }
+            }
+            saveData();
+        })
+
+        function loadData(){
+            for (i=0;i<allcontent.length;i++){
+                content[i]=allcontent[i];
+            }
+        }
+        
+        function saveData() {
+            allcontent=[];
+            for (i = 0; i < Days.length; i++) {
+                for(j=0; j<content[i].childElementCount;j++){
+                   let data=content[i].children[j];
+                   allcontent.push(data);
+                }
+            }
+            localStorage.setItem('datas',JSON.stringify(allcontent));
+        }
+
+
+        // daily.forEach((el) => {
+        //     el.addEventListener('click', () => {
+
+
+
+        //     })
+        // })
+
+
+
+
+
+        // window.onload=()=>{
+        //     const value=localStorage.getItem('key')
+        //     p.innerText=value
+        // }
+
+        //有掛事件才需要特別處理
+        //像ul的父層沒掛事件 因此不需要處理
+        // ul.addEventListener('click', () => console.log('ul'))
+        // li.addEventListener('click', (e) => {
+        //     e.stopPropagation()
+        //     console.log('li')
+        // })
+    </script>
+</body>
+
+</html>
