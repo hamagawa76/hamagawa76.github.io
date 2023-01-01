@@ -421,6 +421,7 @@
                     </div>
                     <div class="col-12 d-flex justify-content-around">
                         <button type="submit" class="btn btn-secondary cancel">刪除行程</button>
+                        <button type="submit" class="btn btn-warning back">退出</button>
                         <button type="submit" class="btn btn-primary enter">確認更新</button>
                     </div>
 
@@ -454,6 +455,7 @@
         const endmin = document.querySelector('.end-min');
         const scheduletxt = document.querySelector('#schedule-txt');
         const enter = document.querySelector('.enter');
+        const back=document.querySelector(".back");
         const cancel = document.querySelector('.cancel');
         const Days = document.getElementsByName('Days');
 
@@ -476,6 +478,8 @@
 
 
 
+
+        back.addEventListener('click',NotShowForm);
 
         //資料儲存
 
