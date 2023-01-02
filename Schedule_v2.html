@@ -31,15 +31,6 @@
             padding: 0;
         }
 
-        .weekday {
-            outline: 2px solid #eee;
-            width: calc(100%/7);
-            height: 5vh;
-            text-align: center;
-            vertical-align: middle;
-            line-height: 5vh;
-        }
-
         .selfbtn {
             outline: 2px solid #eee;
             width: calc(100%/7);
@@ -92,14 +83,14 @@
             <div class="row">
                 <div class="col-12 d-flex align-items-center flex-column m-auto">
                     <div class="year-box d-flex align-items-center">
-                        <button id="m-year">
+                        <button>
                             <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-left">
                                 <path
                                     d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" />
                             </svg>
                         </button>
                         <h1 class="year"><span>2023</span>年</h1>
-                        <button id="p-year">
+                        <button>
                             <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-right">
                                 <path
                                     d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" />
@@ -107,14 +98,14 @@
                         </button>
                     </div>
                     <div class="month-box d-flex align-items-center">
-                        <button id="m-month">
+                        <button>
                             <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-left">
                                 <path
                                     d="M256 504C119 504 8 393 8 256S119 8 256 8s248 111 248 248-111 248-248 248zm116-292H256v-70.9c0-10.7-13-16.1-20.5-8.5L121.2 247.5c-4.7 4.7-4.7 12.2 0 16.9l114.3 114.9c7.6 7.6 20.5 2.2 20.5-8.5V300h116c6.6 0 12-5.4 12-12v-64c0-6.6-5.4-12-12-12z" />
                             </svg>
                         </button>
                         <h1 class="month"><span>01</span>月</h1>
-                        <button id="p-month">
+                        <button>
                             <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-right">
                                 <path
                                     d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zM140 300h116v70.9c0 10.7 13 16.1 20.5 8.5l114.3-114.9c4.7-4.7 4.7-12.2 0-16.9l-114.3-115c-7.6-7.6-20.5-2.2-20.5 8.5V212H140c-6.6 0-12 5.4-12 12v64c0 6.6 5.4 12 12 12z" />
@@ -127,15 +118,6 @@
         </div>
         <div class="container mt-3">
             <div class="row d-flex flex-column justify-content-center align-items-center">
-                <div class="col-12 d-flex">
-                    <div class="weekday">SUNDAY</div>
-                    <div class="weekday">MONDAY</div>
-                    <div class="weekday">TUSEDAY</div>
-                    <div class="weekday">WEDNESDAY</div>
-                    <div class="weekday">THURSDAY</div>
-                    <div class="weekday">FRIDAY</div>
-                    <div class="weekday">SATURDAY</div>
-                </div>
                 <div class="col-12 d-flex">
                     <input type="radio" id="Day1" name="Days" class="radiobtn daily Sunday"><label class="selfbtn"
                         for="Day1">
@@ -440,8 +422,7 @@
                     <div class="col-12 d-flex justify-content-around">
                         <button type="submit" class="btn btn-secondary cancel">刪除行程</button>
                         <button type="submit" class="btn btn-warning back">退出</button>
-                        <button type="submit" class="btn btn-success change">確認更正</button>
-                        <button type="submit" class="btn btn-primary enter">確認新增</button>
+                        <button type="submit" class="btn btn-primary enter">確認更新</button>
                     </div>
 
                 </div>
@@ -458,20 +439,13 @@
         window.onload = function () {
             NotShowForm();
             loadData();
-            daily.forEach((el) => {
-                el.addEventListener('click', () => {
-                    form_box.style.display = 'block';
-                })
-            })
-            listChange();
-            DateUpdate();
-
         }
 
 
-
+        // let allcontent=JSON.parse(localStorage.getItem('datas'))||[];
         let allcontent = [];
-        const lis = document.getElementsByTagName("li");
+        const ul = document.querySelector('ul');
+        const li = document.querySelector('li');
         const daily = document.querySelectorAll('.daily');
         const content = document.querySelectorAll('.selfbtn');
         const form_box = document.querySelector('.form-box');
@@ -483,129 +457,17 @@
         const enter = document.querySelector('.enter');
         const back = document.querySelector(".back");
         const cancel = document.querySelector('.cancel');
-        const change = document.querySelector('.change');
         const Days = document.getElementsByName('Days');
 
 
-        //日期處理
-        const myDate = new Date();
-        const myYear = document.querySelector('.year span');
-        const myMonth = document.querySelector('.month span');
-        const myMonth_en = document.querySelector('.month-en span');
-        const monthArray = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-        const monthArray_en = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
-        let my_year = myDate.getFullYear();
-        let my_month = myDate.getMonth();
-        let my_day = myDate.getDate();
-        let showyear = myYear.innerText;
-        let showmonth = myMonth.innerText;
-        let showmonth_en = myMonth_en.innerText;
-        showyear = my_year;
-        showmonth = monthArray[my_month];
-        showmonth_en = monthArray_en[my_month];
-        const minusyear = document.querySelector("#m-year");
-        const plusyear = document.querySelector("#p-year");
-        const minusmonth = document.querySelector("#m-month");
-        const plusmonth = document.querySelector("#p-month");
+        //點到跳出表單
+        daily.forEach((el) => {
+            el.addEventListener('click', () => {
+                form_box.style.display = 'block';
+            })
 
-        //閏年每月天數
-        const month_olympic = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        const month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        function daysMonth(month, year) {
-            var tmp = year % 4;
-            if (tmp == 0) {
-                return (month_olympic[month]);
-            } else {
-                return (month_normal[month]);
-            }
-        }
-
-        //每月第一天星期幾
-        function dayStart(month, year) {
-            var tmpDate = new Date(year, month, 1);
-            return (tmpDate.getDay());
-        }
-
-
-        //更新日期
-
-        function ClearP() {
-            for (i = 0; i < 42; i++) {
-                let allp = content[i].querySelector("p")
-                if (allp != null) {
-                    allp.innerText = "";
-                }
-            }
-        }
-        function DateUpdate() {
-            ClearP();
-            let totalDay = daysMonth(my_month, my_year);
-            let firstDay = dayStart(my_month, my_year);
-            // console.log(firstDay);
-            // console.log(totalDay);
-            for (let i = firstDay + 1; i <= totalDay + firstDay; i++) {
-                let addp = document.createElement("p");
-                // let pickDay=document.querySelector(`Day${i} label`);
-
-                addp.innerText = `${i - firstDay}`;
-                content[i - 1].prepend(addp);
-            }
-
-        }
-
-        //日期按鈕功能
-        minusyear.addEventListener('click', () => {
-            my_year = my_year - 1;
-            console.log(my_year)
-            myYear.innerText = my_year;
-            // ClearP();
-            DateUpdate(my_year);
-        })
-        plusyear.addEventListener('click', () => {
-            my_year = my_year + 1;
-            console.log(my_year)
-            myYear.innerText = my_year;
-            // ClearP();
-            DateUpdate(my_year);
-        })
-        minusmonth.addEventListener('click', () => {
-            if(my_month<0){
-                console.log(`月${my_month}`)
-                my_month=12;
-            }
-            else{
-                my_month = my_month - 1;
-            }
-            console.log(`月${my_month}`)
-            myMonth.innerText = monthArray[my_month];
-            // ClearP();
-            DateUpdate(my_month);
-        })
-        plusmonth.addEventListener('click', () => {
-            if(my_month>12){
-                console.log(`月${my_month}`)
-                my_month=0;
-            }
-            else{
-                my_month = my_month + 1;
-            }
-            
-            myMonth.innerText = monthArray[my_month];
-            console.log(`月${my_month}`)
-            // ClearP();
-            DateUpdate(my_month);
         })
 
-        
-
-
-
-
-
-
-        // 點到跳出表單
-
-        cancel.addEventListener('click', NotShowForm);
 
         function NotShowForm() {
             form_box.style.display = 'none';
@@ -614,13 +476,10 @@
             form_box.style.display = 'block';
         }
 
+
+
+
         back.addEventListener('click', NotShowForm);
-
-
-
-
-
-
 
         //資料儲存
 
@@ -631,107 +490,44 @@
             saveetm = endmin.value.toString();
             savetxt = scheduletxt.value;
             listcontent = `${savesth}:${savestm}至${saveeth}:${saveetm}：${savetxt}`;
-
-
-            if (saveeth == "" || saveetm == "" || savesth == "" || savestm == "" || savetxt == "") {
-                alert("資料尚未填寫完成")
-            }
-            else if (starthour.value > endhour.value) {
-                alert("請確認填寫時間")
-            }
-            else if (starthour.value == endhour.value && startmin.value >= endmin.value) {
-                alert("請確認填寫時間")
-            }
-            else {
-
-                for (i = 0; i < Days.length; i++) {
-                    if (Days[i].checked) {
-                        let createli = document.createElement('li');
-                        createli.innerText = listcontent;
-                        console.log(createli);
-                        let displayArea = content[i].children[1];
-                        // content[i].children[0].appendChild(createli);
-                        displayArea.innerHTML += `<li>${createli.innerHTML}</li>`;
-                        localStorage.setItem(`ls_day${[i]}${showyear}${showmonth}`, displayArea.innerHTML);
-                    }
+            NotShowForm()
+            for (i = 0; i < Days.length; i++) {
+                if (Days[i].checked) {
+                    let createli = document.createElement('li');
+                    createli.innerText = listcontent;
+                    let displayArea=content[i].children[0];
+                    displayArea.appendChild(createli);
+                    displayArea.innerHTML+=`<li>${createli}</li>`;
+                    console.log(createli);
+                    localStorage.setItem(`ls_day${[i]}`, displayArea);
                 }
-                NotShowForm()
-                history.go();
             }
+            
         })
-
-        function listChange() {
-            Array.from(lis).forEach((el) => {
-                el.addEventListener('click', (e) => {
-
-                    form_box.style.display = 'block';
-                    starthour.value = el.innerText.substr(0, 2);
-                    startmin.value = el.innerText.substr(3, 2);
-                    endhour.value = el.innerText.substr(6, 2);
-                    endmin.value = el.innerText.substr(9, 2);
-                    scheduletxt.value = el.innerText.substr(12);
-                    console.log(scheduletxt.value);
-                    e.stopPropagation()
-
-                    cancel.addEventListener('click', () => {
-                        el.remove();
-                    })
-                    change.addEventListener('click', () => {
-                        console.log("change");
-                        savesth = starthour.value.toString();
-                        savestm = startmin.value.toString();
-                        saveeth = endhour.value.toString();
-                        saveetm = endmin.value.toString();
-                        savetxt = scheduletxt.value;
-                        el.innerText = `${savesth}:${savestm}至${saveeth}:${saveetm}：${savetxt}`;
-
-                        if (saveeth == "" || saveetm == "" || savesth == "" || savestm == "" || savetxt == "") {
-                            alert("資料尚未填寫完成")
-                        }
-                        else if (starthour.value > endhour.value) {
-                            alert("請確認填寫時間")
-                        }
-                        else if (starthour.value == endhour.value && startmin.value >= endmin.value) {
-                            alert("請確認填寫時間")
-                        }
-                        else {
-                            for (i = 0; i < Days.length; i++) {
-                                if (Days[i].checked) {
-                                    let displayArea = content[i].children[1];
-                                    localStorage.setItem(`ls_day${[i]}${showyear}${showmonth}`, displayArea.innerHTML);
-                                }
-                            }
-
-                            NotShowForm()
-                        }
-                    })
-                })
-            })
-        }
 
         function loadData() {
             for (i = 0; i < Days.length; i++) {
-                let displayArea = content[i].children[0];
-                displayArea.innerHTML = localStorage.getItem(`ls_day${i}${showyear}${showmonth}`)
+                let displayArea=content[i].children[0];
+                displayArea.innerHTML=localStorage.getItem(`ls_day${i}`)
             }
         }
 
-        // function saveData() {
-        //     allcontent = [];
-        //     for (i = 0; i < 42; i++) {
-        //         // console.log(content[i].getElementsByTagName("li").length);
-        //         // for(j=0; j<content[i].getElementsByTagName("li").length;j++){
-        //         for (j = 0; j < content[i].getElementsByTagName("li").length+1; j++) {
-        //             let data = content[i].children[j].innerText;
-        //             console.log(content[i]);
-        //             allcontent.push(data);
-        //             //    console.log(`data:${data} i:${i} j:${j}`);
-        //         }
-        //     }
-        //     let JSONdata = JSON.stringify(allcontent);
-        //     console.log(allcontent);
-        //     localStorage.setItem('datas', JSON.stringify(allcontent));
-        // }
+        function saveData() {
+            allcontent = [];
+            for (i = 0; i < 42; i++) {
+                // console.log(content[i].getElementsByTagName("li").length);
+                // for(j=0; j<content[i].getElementsByTagName("li").length;j++){
+                for (j = 0; j < content[i].getElementsByTagName("li").length+1; j++) {
+                    let data = content[i].children[j].innerText;
+                    console.log(content[i]);
+                    allcontent.push(data);
+                    //    console.log(`data:${data} i:${i} j:${j}`);
+                }
+            }
+            let JSONdata = JSON.stringify(allcontent);
+            console.log(allcontent);
+            localStorage.setItem('datas', JSON.stringify(allcontent));
+        }
 
 
         // daily.forEach((el) => {
