@@ -11,12 +11,24 @@
     <style>
         .main {
             position: relative;
+            background-image: url(./sch_pic/sea.webp);
+            background-position: center 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -ms-background-size: cover;
         }
 
         ul {
-            flex-wrap: wrap;
+            flex-direction: column;
             justify-content: start;
             width: 100%;
+            display: flex;
+            align-items: start;
+            height: fit-content;
             margin: 0;
             padding: 0;
         }
@@ -24,31 +36,53 @@
         li {
             list-style: none;
             font-size: 12px;
-            white-space: nowrap;
             text-align: start;
             height: fit-content;
             margin: 0;
             padding: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 50px;
+            background-color: gold;
         }
+
+
 
         .weekday {
             outline: 2px solid #eee;
+            background-color: #04362180;
             width: calc(100%/7);
             height: 5vh;
             text-align: center;
             vertical-align: middle;
             line-height: 5vh;
+            font-weight: 800;
+            color: #a4f9d6;
+
         }
 
         .selfbtn {
+            margin: 0;
+            padding: 0;
             outline: 2px solid #eee;
             width: calc(100%/7);
             height: 15vh;
-            overflow: hidden;
+            overflow: auto;
             display: flex;
             flex-wrap: wrap;
             justify-content: start;
+            background-color: #ffffff95;
+            font-weight: 700;
+
         }
+
+        .selfbtn .ppp {
+            margin: 0;
+            padding: 0;
+            height: 20px;
+        }
+
 
         .radiobtn {
             display: none;
@@ -64,8 +98,18 @@
 
         .cal-box svg {
             width: 100%;
+
         }
 
+        .boxYM {
+            background-color: #eeeeee98;
+            border-radius: 10px;
+            color: #043621;
+        }
+
+        .day-content {
+            margin-bottom: 5vh;
+        }
 
         .form-part {
             position: absolute;
@@ -83,6 +127,25 @@
         .form-select {
             font-size: 18px;
         }
+
+        .form-box p {
+            color: gold;
+            font-weight: 800;
+        }
+
+        @media screen and (width>=992px) {
+            .cal-box {
+                width: 30% !important;
+            }
+
+            .day-content {
+                width: 70% !important;
+            }
+
+            .cal-box {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 
@@ -90,7 +153,7 @@
     <div class="container-fluid d-flex flex-column flex-lg-row main">
         <div class="cal-box container d-lg-flex align-items-center">
             <div class="row">
-                <div class="col-12 d-flex align-items-center flex-column m-auto">
+                <div class="col-12 d-flex align-items-center flex-column m-auto boxYM">
                     <div class="year-box d-flex align-items-center">
                         <button id="m-year">
                             <svg viewBox="0 0 512 512" width="100" title="arrow-alt-circle-left">
@@ -125,16 +188,16 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-3">
+        <div class="container mt-3 day-content">
             <div class="row d-flex flex-column justify-content-center align-items-center">
                 <div class="col-12 d-flex">
-                    <div class="weekday">SUNDAY</div>
-                    <div class="weekday">MONDAY</div>
-                    <div class="weekday">TUSEDAY</div>
-                    <div class="weekday">WEDNESDAY</div>
-                    <div class="weekday">THURSDAY</div>
-                    <div class="weekday">FRIDAY</div>
-                    <div class="weekday">SATURDAY</div>
+                    <div class="weekday">SUN.</div>
+                    <div class="weekday">MON.</div>
+                    <div class="weekday">TUS.</div>
+                    <div class="weekday">WED.</div>
+                    <div class="weekday">THU.</div>
+                    <div class="weekday">FRI.</div>
+                    <div class="weekday">SAT.</div>
                 </div>
                 <div class="col-12 d-flex">
                     <input type="radio" id="Day1" name="Days" class="radiobtn daily Sunday"><label class="selfbtn"
@@ -611,6 +674,7 @@
             }
             console.log(`down月${my_month}`)
             myMonth.innerText = monthArray[my_month];
+            myMonth_en.innerText = monthArray_en[my_month];
             // ClearP();
             Array.from(lis).forEach((el) => {
                 el.innerText = "";
@@ -630,6 +694,7 @@
             }
 
             myMonth.innerText = monthArray[my_month];
+            myMonth_en.innerText = monthArray_en[my_month];
             console.log(`月${my_month}`)
             // ClearP();
             Array.from(lis).forEach((el) => {
@@ -660,9 +725,8 @@
         back.addEventListener('click', NotShowForm);
 
 
-
-
-
+        change.disabled = true;
+        cancel.disabled = true;
 
 
         //資料儲存
@@ -675,7 +739,10 @@
 
             Array.from(lis).forEach((el) => {
                 el.addEventListener('click', (e) => {
-
+                    enter.disabled = true;
+                    change.disabled = false;
+                    cancel.disabled = false;
+                    console.log("功能正常");
                     form_box.style.display = 'block';
                     starthour.value = el.innerText.substr(0, 2);
                     startmin.value = el.innerText.substr(3, 2);
@@ -795,14 +862,14 @@
                 else {
                     loadmonth = my_month + 1
                 }
-                
+
                 let getitem = JSON.parse(localStorage.getItem(`${my_year}/${loadmonth}/${i + 1}`))
                 if (getitem == null) {
                     // displayArea.innerHTML = "";
                 }
                 else {
-                console.log(content[i])
-                displayArea.innerHTML = getitem.thiscontent;
+                    console.log(content[i])
+                    displayArea.innerHTML = getitem.thiscontent;
                 }
             }
 
