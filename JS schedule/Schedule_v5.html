@@ -470,6 +470,7 @@
             listChange();
         }
 
+        loadData();
 
 
         let allcontent = [];
@@ -546,7 +547,7 @@
         }
         function DateUpdate() {
             ClearP();
-            listChange();
+  
             let totalDay = daysMonth(my_month, my_year);
             let firstDay = dayStart(my_month, my_year);
             // console.log(firstDay);
