@@ -456,16 +456,18 @@
     <script>
 
         window.onload = function () {
+
             NotShowForm();
-            loadData();
+
             daily.forEach((el) => {
                 el.addEventListener('click', () => {
                     form_box.style.display = 'block';
                 })
             })
-            listChange();
-            DateUpdate();
 
+            DateUpdate();
+            loadData();
+            listChange();
         }
 
 
@@ -485,7 +487,7 @@
         const cancel = document.querySelector('.cancel');
         const change = document.querySelector('.change');
         const Days = document.getElementsByName('Days');
-
+        const DataBox = [];
 
         //日期處理
         const myDate = new Date();
@@ -536,67 +538,108 @@
                     allp.innerText = "";
                 }
             }
+            let arr = document.getElementsByClassName('ppp');
+            for (let i = arr.length - 1; i >= 0; i--) {
+                arr[i].parentNode.removeChild(arr[i]);
+            }
+
         }
         function DateUpdate() {
             ClearP();
+
             let totalDay = daysMonth(my_month, my_year);
             let firstDay = dayStart(my_month, my_year);
             // console.log(firstDay);
             // console.log(totalDay);
             for (let i = firstDay + 1; i <= totalDay + firstDay; i++) {
-                let addp = document.createElement("p");
-                // let pickDay=document.querySelector(`Day${i} label`);
 
+                // let collectp = content[i].querySelectorAll("p");
+                // collectp.removeChild(list.childNodes[0]);
+                let addp = document.createElement("p");
+                addp.setAttribute("class", "ppp");
                 addp.innerText = `${i - firstDay}`;
                 content[i - 1].prepend(addp);
+
+                // let pickDay=document.querySelector(`Day${i} label`);
             }
 
         }
 
+        function UL() {
+
+            DateUpdate();
+            loadData();
+        }
+
         //日期按鈕功能
         minusyear.addEventListener('click', () => {
+
             my_year = my_year - 1;
             console.log(my_year)
             myYear.innerText = my_year;
             // ClearP();
-            DateUpdate(my_year);
+            Array.from(lis).forEach((el) => {
+                el.innerText = "";
+            })
+            UL();
+
+
         })
         plusyear.addEventListener('click', () => {
+
             my_year = my_year + 1;
             console.log(my_year)
             myYear.innerText = my_year;
             // ClearP();
-            DateUpdate(my_year);
+            Array.from(lis).forEach((el) => {
+                el.innerText = "";
+            })
+            UL();
+
+
         })
         minusmonth.addEventListener('click', () => {
-            if(my_month<0){
+
+            console.log(`up月${my_month}`)
+            if (my_month <= 0) {
                 console.log(`月${my_month}`)
-                my_month=12;
+                my_month = 11;
             }
-            else{
+            else {
                 my_month = my_month - 1;
             }
-            console.log(`月${my_month}`)
+            console.log(`down月${my_month}`)
             myMonth.innerText = monthArray[my_month];
             // ClearP();
-            DateUpdate(my_month);
+            Array.from(lis).forEach((el) => {
+                el.innerText = "";
+            })
+            UL();
+
+
         })
         plusmonth.addEventListener('click', () => {
-            if(my_month>12){
+
+            console.log(`月${my_month}`)
+            if (my_month >= 11) {
                 console.log(`月${my_month}`)
-                my_month=0;
+                my_month = 0;
             }
-            else{
+            else {
                 my_month = my_month + 1;
             }
-            
+
             myMonth.innerText = monthArray[my_month];
             console.log(`月${my_month}`)
             // ClearP();
-            DateUpdate(my_month);
+            Array.from(lis).forEach((el) => {
+                el.innerText = "";
+            })
+            UL();
+
         })
 
-        
+
 
 
 
@@ -625,6 +668,148 @@
         //資料儲存
 
         enter.addEventListener('click', () => {
+            saveData();
+        })
+
+        function listChange() {
+
+            Array.from(lis).forEach((el) => {
+                el.addEventListener('click', (e) => {
+
+                    form_box.style.display = 'block';
+                    starthour.value = el.innerText.substr(0, 2);
+                    startmin.value = el.innerText.substr(3, 2);
+                    endhour.value = el.innerText.substr(6, 2);
+                    endmin.value = el.innerText.substr(9, 2);
+                    scheduletxt.value = el.innerText.substr(12);
+                    console.log(scheduletxt.value);
+                    e.stopPropagation();
+                    change.addEventListener('click', (ee) => {
+                        console.log("change");
+                        console.log(ee);
+                        for (j = 0; j < Days.length; j++) {
+                            if (Days[j].checked) {
+                                let displayArea = content[j].children[1];
+                                if (my_month + 1 < 10) {
+                                    loadmonth = `0${my_month + 1}`;
+                                }
+                                else {
+                                    loadmonth = my_month + 1
+                                }
+                                let getitem = JSON.parse(localStorage.getItem(`${my_year}/${loadmonth}/${i + 1}`))
+
+                                savesth = starthour.value.toString();
+                                savestm = startmin.value.toString();
+                                saveeth = endhour.value.toString();
+                                saveetm = endmin.value.toString();
+                                savetxt = scheduletxt.value;
+                                el.innerText = `${savesth}:${savestm}至${saveeth}:${saveetm}：${savetxt}`;
+                                console.log(scheduletxt.value);
+                                let textcontent = displayArea.innerHTML;
+                                displayArea.innerHTML += `<li>${el.innerText}</li>`;
+                                console.log(el.innerText);
+                                textcontent.replace(`<li>${el.innerText}</li>`, "")
+                                textcontent.replaceAll("<li></li>", "");
+                                console.log(textcontent)
+
+                                getitem = {
+                                    id: `${my_year}/${loadmonth}/${j + 1}`,
+                                    thisYear: my_year,
+                                    thisMonth: loadmonth,
+                                    thisDate: j + 1,
+                                    thiscontent: textcontent
+                                }
+
+                                let json = JSON.stringify(getitem);
+                                localStorage.setItem(`${my_year}/${loadmonth}/${j + 1}`, json);
+
+                            }
+                        }
+                        NotShowForm();
+                        // history.go();
+                    })
+                    cancel.addEventListener('click', () => {
+                        console.log("cancel");
+                        savesth = starthour.value.toString();
+                        savestm = startmin.value.toString();
+                        saveeth = endhour.value.toString();
+                        saveetm = endmin.value.toString();
+                        savetxt = scheduletxt.value;
+                        el.innerText = `${savesth}:${savestm}至${saveeth}:${saveetm}：${savetxt}`;
+
+                        if (saveeth == "" || saveetm == "" || savesth == "" || savestm == "" || savetxt == "") {
+                            alert("資料尚未填寫完成")
+                        }
+                        else if (starthour.value > endhour.value) {
+                            alert("請確認填寫時間")
+                        }
+                        else if (starthour.value == endhour.value && startmin.value >= endmin.value) {
+                            alert("請確認填寫時間")
+                        }
+                        else {
+                            for (i = 0; i < Days.length; i++) {
+                                if (Days[i].checked) {
+                                    let displayArea = content[i].children[1];
+                                    if (my_month + 1 < 10) {
+                                        loadmonth = `0${my_month + 1}`;
+                                    }
+                                    else {
+                                        loadmonth = my_month + 1
+                                    }
+                                    let getitem = JSON.parse(localStorage.getItem(`${my_year}/${loadmonth}/${i + 1}`))
+
+
+                                    el.innerHTML = ""
+                                    getitem = {
+                                        id: `${my_year}/${loadmonth}/${i + 1}`,
+                                        thisYear: my_year,
+                                        thisMonth: loadmonth,
+                                        thisDate: i + 1,
+                                        thiscontent: displayArea.innerHTML
+                                    }
+
+
+
+
+                                    let json = JSON.stringify(getitem);
+                                    localStorage.setItem(`${my_year}/${loadmonth}/${i + 1}`, json);
+
+                                }
+                            }
+                            NotShowForm();
+                        }
+                    })
+                })
+            })
+        }
+
+        function loadData() {
+
+
+
+            for (i = 0; i < Days.length; i++) {
+                let displayArea = content[i].children[1];
+                if (my_month + 1 < 10) {
+                    loadmonth = `0${my_month + 1}`;
+                }
+                else {
+                    loadmonth = my_month + 1
+                }
+                let getitem = JSON.parse(localStorage.getItem(`${my_year}/${loadmonth}/${i + 1}`))
+                if (getitem == null) {
+                    // displayArea.innerText = "";
+                }
+                else {
+                    console.log(content[i])
+                    displayArea.innerHTML = getitem.thiscontent;
+                }
+            }
+
+
+        }
+
+        function saveData() {
+
             savesth = starthour.value.toString();
             savestm = startmin.value.toString();
             saveeth = endhour.value.toString();
@@ -646,118 +831,40 @@
 
                 for (i = 0; i < Days.length; i++) {
                     if (Days[i].checked) {
+                        // let daydata = document.querySelectorAll("p");
+                        let existItem = localStorage.getItem(`${my_year}/${my_month+1}/${i+1}`);
+                        // if (existItem == undefined || existItem == null) {
+
                         let createli = document.createElement('li');
+
                         createli.innerText = listcontent;
                         console.log(createli);
                         let displayArea = content[i].children[1];
-                        // content[i].children[0].appendChild(createli);
+
                         displayArea.innerHTML += `<li>${createli.innerHTML}</li>`;
-                        localStorage.setItem(`ls_day${[i]}${showyear}${showmonth}`, displayArea.innerHTML);
+                        item = {
+                            id: `${my_year}/${my_month+1}/${i+1}`,
+                            thisYear: my_year,
+                            thisMonth: my_month+1,
+                            thisDate: i+1,
+                            thiscontent: displayArea.innerHTML
+                        }
+                        console.log(`${my_year}`);
+                        console.log(`${my_month+1}`);
+                        console.log(`${i+1}`);
+                        console.log(`內容:${displayArea.innerHTML}`);
+                        let json = JSON.stringify(item);
+                        localStorage.setItem(`${my_year}/${my_month+1}/${i+1}`, json);
+
                     }
+
                 }
-                NotShowForm()
+                NotShowForm();
                 history.go();
             }
-        })
-
-        function listChange() {
-            Array.from(lis).forEach((el) => {
-                el.addEventListener('click', (e) => {
-
-                    form_box.style.display = 'block';
-                    starthour.value = el.innerText.substr(0, 2);
-                    startmin.value = el.innerText.substr(3, 2);
-                    endhour.value = el.innerText.substr(6, 2);
-                    endmin.value = el.innerText.substr(9, 2);
-                    scheduletxt.value = el.innerText.substr(12);
-                    console.log(scheduletxt.value);
-                    e.stopPropagation()
-
-                    cancel.addEventListener('click', () => {
-                        el.remove();
-                    })
-                    change.addEventListener('click', () => {
-                        console.log("change");
-                        savesth = starthour.value.toString();
-                        savestm = startmin.value.toString();
-                        saveeth = endhour.value.toString();
-                        saveetm = endmin.value.toString();
-                        savetxt = scheduletxt.value;
-                        el.innerText = `${savesth}:${savestm}至${saveeth}:${saveetm}：${savetxt}`;
-
-                        if (saveeth == "" || saveetm == "" || savesth == "" || savestm == "" || savetxt == "") {
-                            alert("資料尚未填寫完成")
-                        }
-                        else if (starthour.value > endhour.value) {
-                            alert("請確認填寫時間")
-                        }
-                        else if (starthour.value == endhour.value && startmin.value >= endmin.value) {
-                            alert("請確認填寫時間")
-                        }
-                        else {
-                            for (i = 0; i < Days.length; i++) {
-                                if (Days[i].checked) {
-                                    let displayArea = content[i].children[1];
-                                    localStorage.setItem(`ls_day${[i]}${showyear}${showmonth}`, displayArea.innerHTML);
-                                }
-                            }
-
-                            NotShowForm()
-                        }
-                    })
-                })
-            })
         }
 
-        function loadData() {
-            for (i = 0; i < Days.length; i++) {
-                let displayArea = content[i].children[0];
-                displayArea.innerHTML = localStorage.getItem(`ls_day${i}${showyear}${showmonth}`)
-            }
-        }
 
-        // function saveData() {
-        //     allcontent = [];
-        //     for (i = 0; i < 42; i++) {
-        //         // console.log(content[i].getElementsByTagName("li").length);
-        //         // for(j=0; j<content[i].getElementsByTagName("li").length;j++){
-        //         for (j = 0; j < content[i].getElementsByTagName("li").length+1; j++) {
-        //             let data = content[i].children[j].innerText;
-        //             console.log(content[i]);
-        //             allcontent.push(data);
-        //             //    console.log(`data:${data} i:${i} j:${j}`);
-        //         }
-        //     }
-        //     let JSONdata = JSON.stringify(allcontent);
-        //     console.log(allcontent);
-        //     localStorage.setItem('datas', JSON.stringify(allcontent));
-        // }
-
-
-        // daily.forEach((el) => {
-        //     el.addEventListener('click', () => {
-
-
-
-        //     })
-        // })
-
-
-
-
-
-        // window.onload=()=>{
-        //     const value=localStorage.getItem('key')
-        //     p.innerText=value
-        // }
-
-        //有掛事件才需要特別處理
-        //像ul的父層沒掛事件 因此不需要處理
-        // ul.addEventListener('click', () => console.log('ul'))
-        // li.addEventListener('click', (e) => {
-        //     e.stopPropagation()
-        //     console.log('li')
-        // })
     </script>
 </body>
 
