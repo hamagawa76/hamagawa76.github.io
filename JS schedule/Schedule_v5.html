@@ -455,20 +455,7 @@
 
     <script>
 
-        window.onload = function () {
 
-            NotShowForm();
-
-            daily.forEach((el) => {
-                el.addEventListener('click', () => {
-                    form_box.style.display = 'block';
-                })
-            })
-
-            DateUpdate();
-            loadData();
-            listChange();
-        }
 
         loadData();
 
@@ -547,7 +534,7 @@
         }
         function DateUpdate() {
             ClearP();
-  
+
             let totalDay = daysMonth(my_month, my_year);
             let firstDay = dayStart(my_month, my_year);
             // console.log(firstDay);
@@ -832,7 +819,7 @@
                 for (i = 0; i < Days.length; i++) {
                     if (Days[i].checked) {
                         // let daydata = document.querySelectorAll("p");
-                        let existItem = localStorage.getItem(`${my_year}/${my_month+1}/${i+1}`);
+                        let existItem = localStorage.getItem(`${my_year}/${my_month + 1}/${i + 1}`);
                         // if (existItem == undefined || existItem == null) {
 
                         let createli = document.createElement('li');
@@ -843,18 +830,18 @@
 
                         displayArea.innerHTML += `<li>${createli.innerHTML}</li>`;
                         item = {
-                            id: `${my_year}/${my_month+1}/${i+1}`,
+                            id: `${my_year}/${my_month + 1}/${i + 1}`,
                             thisYear: my_year,
-                            thisMonth: my_month+1,
-                            thisDate: i+1,
+                            thisMonth: my_month + 1,
+                            thisDate: i + 1,
                             thiscontent: displayArea.innerHTML
                         }
                         console.log(`${my_year}`);
-                        console.log(`${my_month+1}`);
-                        console.log(`${i+1}`);
+                        console.log(`${my_month + 1}`);
+                        console.log(`${i + 1}`);
                         console.log(`內容:${displayArea.innerHTML}`);
                         let json = JSON.stringify(item);
-                        localStorage.setItem(`${my_year}/${my_month+1}/${i+1}`, json);
+                        localStorage.setItem(`${my_year}/${my_month + 1}/${i + 1}`, json);
 
                     }
 
@@ -862,6 +849,21 @@
                 NotShowForm();
                 history.go();
             }
+        }
+
+        window.onload = function () {
+
+            NotShowForm();
+
+            daily.forEach((el) => {
+                el.addEventListener('click', () => {
+                    form_box.style.display = 'block';
+                })
+            })
+
+            DateUpdate();
+            loadData();
+            listChange();
         }
 
 
