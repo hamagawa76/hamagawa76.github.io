@@ -522,15 +522,11 @@
 
             NotShowForm();
 
-            daily.forEach((el) => {
-                el.addEventListener('click', () => {
-                    form_box.style.display = 'block';
-                })
-            })
-
+            dayboxopen();
             DateUpdate();
             loadData();
             listChange();
+            btncontrol();
         }
 
 
@@ -725,8 +721,57 @@
         back.addEventListener('click', NotShowForm);
 
 
-        change.disabled = true;
-        cancel.disabled = true;
+
+
+        function dayboxopen() {
+            daily.forEach((el) => {
+                el.addEventListener('click', () => {
+                    ShowForm();
+                    console.log("daybox");
+                    enter.disabled = false;
+                    change.disabled = true;
+                    cancel.disabled = true;
+                    console.log("功能正常");
+                    starthour.value = "(時)";
+                    startmin.value = "(分)";
+                    endhour.value = "(時)";
+                    endmin.value = "(分)";
+                    scheduletxt.value = "";
+                })
+            })
+        }
+
+        function btncontrol() {
+            Array.from(lis).forEach((el) => {
+                el.addEventListener('click', (e) => {
+                    stopDefault(e);
+                    stopBubble(e);
+                    enter.disabled = true;
+                    change.disabled = false;
+                    cancel.disabled = false;
+
+                })
+            })
+        }
+
+        //阻止冒泡
+        function stopBubble(e) {
+
+            if (e && e.stopPropagation)
+
+                e.stopPropagation();
+            else
+
+                window.event.cancelBubble = true;
+        }
+        function stopDefault(e) {
+            if (e && e.preventDefault)
+                e.preventDefault();
+            else
+                window.event.returnValue = false;
+            return false;
+        }
+
 
 
         //資料儲存
@@ -738,11 +783,9 @@
         function listChange() {
 
             Array.from(lis).forEach((el) => {
+
                 el.addEventListener('click', (e) => {
-                    enter.disabled = true;
-                    change.disabled = false;
-                    cancel.disabled = false;
-                    console.log("功能正常");
+
                     form_box.style.display = 'block';
                     starthour.value = el.innerText.substr(0, 2);
                     startmin.value = el.innerText.substr(3, 2);
@@ -750,10 +793,10 @@
                     endmin.value = el.innerText.substr(9, 2);
                     scheduletxt.value = el.innerText.substr(12);
                     console.log(scheduletxt.value);
-                    e.stopPropagation();
-                    change.addEventListener('click', (ee) => {
+
+                    change.addEventListener('click', () => {
                         console.log("change");
-                        console.log(ee);
+
                         for (j = 0; j < Days.length; j++) {
                             if (Days[j].checked) {
                                 let displayArea = content[j].children[1];
