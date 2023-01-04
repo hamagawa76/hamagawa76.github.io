@@ -506,7 +506,6 @@
                         <button type="submit" class="btn btn-success change">確認更正</button>
                         <button type="submit" class="btn btn-primary enter">確認新增</button>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -522,11 +521,26 @@
 
             NotShowForm();
 
-            dayboxopen();
+            daily.forEach((el) => {
+                el.addEventListener('click', () => {
+                    ShowForm();
+                    console.log("daybox");
+                    // enter.disabled = false;
+                    // change.disabled = true;
+                    // cancel.disabled = true;
+                    console.log("功能正常");
+                    // starthour.value = "(時)";
+                    // startmin.value = "(分)";
+                    // endhour.value = "(時)";
+                    // endmin.value = "(分)";
+                    // scheduletxt.value = "";
+                })
+            })
+            
             DateUpdate();
             loadData();
             listChange();
-            btncontrol();
+
         }
 
 
@@ -709,7 +723,7 @@
 
         // 點到跳出表單
 
-        cancel.addEventListener('click', NotShowForm);
+        
 
         function NotShowForm() {
             form_box.style.display = 'none';
@@ -728,9 +742,9 @@
                 el.addEventListener('click', () => {
                     ShowForm();
                     console.log("daybox");
-                    enter.disabled = false;
-                    change.disabled = true;
-                    cancel.disabled = true;
+                    // enter.disabled = false;
+                    // change.disabled = true;
+                    // cancel.disabled = true;
                     console.log("功能正常");
                     starthour.value = "(時)";
                     startmin.value = "(分)";
@@ -785,7 +799,7 @@
             Array.from(lis).forEach((el) => {
 
                 el.addEventListener('click', (e) => {
-
+                   
                     form_box.style.display = 'block';
                     starthour.value = el.innerText.substr(0, 2);
                     startmin.value = el.innerText.substr(3, 2);
@@ -793,7 +807,7 @@
                     endmin.value = el.innerText.substr(9, 2);
                     scheduletxt.value = el.innerText.substr(12);
                     console.log(scheduletxt.value);
-
+                    e.stopPropagation();
                     change.addEventListener('click', () => {
                         console.log("change");
 
@@ -832,7 +846,7 @@
 
                                 let json = JSON.stringify(getitem);
                                 localStorage.setItem(`${my_year}/${loadmonth}/${j + 1}`, json);
-
+                                
                             }
                         }
                         NotShowForm();
@@ -883,10 +897,13 @@
 
                                     let json = JSON.stringify(getitem);
                                     localStorage.setItem(`${my_year}/${loadmonth}/${i + 1}`, json);
-
+                                    
+                                   
                                 }
                             }
+
                             NotShowForm();
+                            history.go();
                         }
                     })
                 })
