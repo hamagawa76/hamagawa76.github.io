@@ -546,7 +546,7 @@
         }
         function DateUpdate() {
             ClearP();
-
+            listChange();
             let totalDay = daysMonth(my_month, my_year);
             let firstDay = dayStart(my_month, my_year);
             // console.log(firstDay);
@@ -582,7 +582,7 @@
                 el.innerText = "";
             })
             UL();
-
+            listChange();
 
         })
         plusyear.addEventListener('click', () => {
@@ -595,7 +595,7 @@
                 el.innerText = "";
             })
             UL();
-
+            listChange();
 
         })
         minusmonth.addEventListener('click', () => {
@@ -615,8 +615,7 @@
                 el.innerText = "";
             })
             UL();
-
-
+            listChange();
         })
         plusmonth.addEventListener('click', () => {
 
@@ -636,7 +635,7 @@
                 el.innerText = "";
             })
             UL();
-
+            listChange();
         })
 
 
@@ -726,7 +725,7 @@
                             }
                         }
                         NotShowForm();
-                        // history.go();
+                        history.go();
                     })
                     cancel.addEventListener('click', () => {
                         console.log("cancel");
