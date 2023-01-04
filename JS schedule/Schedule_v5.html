@@ -534,6 +534,7 @@
                     // endhour.value = "(時)";
                     // endmin.value = "(分)";
                     // scheduletxt.value = "";
+                   
                 })
             })
             
@@ -569,7 +570,7 @@
         const myMonth = document.querySelector('.month span');
         const myMonth_en = document.querySelector('.month-en span');
         const monthArray = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-        const monthArray_en = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
+        const monthArray_en = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let my_year = myDate.getFullYear();
         let my_month = myDate.getMonth();
         let my_day = myDate.getDate();
@@ -799,7 +800,7 @@
             Array.from(lis).forEach((el) => {
 
                 el.addEventListener('click', (e) => {
-                   
+                    stopBubble(e);
                     form_box.style.display = 'block';
                     starthour.value = el.innerText.substr(0, 2);
                     startmin.value = el.innerText.substr(3, 2);
