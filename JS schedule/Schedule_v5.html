@@ -455,9 +455,22 @@
 
     <script>
 
+        window.onload = function () {
+
+            NotShowForm();
+
+            daily.forEach((el) => {
+                el.addEventListener('click', () => {
+                    form_box.style.display = 'block';
+                })
+            })
+
+            DateUpdate();
+            loadData();
+            listChange();
+        }
 
 
-        loadData();
 
 
         let allcontent = [];
@@ -782,13 +795,14 @@
                 else {
                     loadmonth = my_month + 1
                 }
+                
                 let getitem = JSON.parse(localStorage.getItem(`${my_year}/${loadmonth}/${i + 1}`))
                 if (getitem == null) {
-                    // displayArea.innerText = "";
+                    // displayArea.innerHTML = "";
                 }
                 else {
-                    console.log(content[i])
-                    displayArea.innerHTML = getitem.thiscontent;
+                console.log(content[i])
+                displayArea.innerHTML = getitem.thiscontent;
                 }
             }
 
@@ -818,8 +832,14 @@
 
                 for (i = 0; i < Days.length; i++) {
                     if (Days[i].checked) {
+                        if (my_month + 1 < 10) {
+                            loadmonth = `0${my_month + 1}`;
+                        }
+                        else {
+                            loadmonth = my_month + 1
+                        }
                         // let daydata = document.querySelectorAll("p");
-                        let existItem = localStorage.getItem(`${my_year}/${my_month + 1}/${i + 1}`);
+                        let existItem = localStorage.getItem(`${my_year}/${loadmonth}/${i + 1}`);
                         // if (existItem == undefined || existItem == null) {
 
                         let createli = document.createElement('li');
@@ -832,16 +852,16 @@
                         item = {
                             id: `${my_year}/${my_month + 1}/${i + 1}`,
                             thisYear: my_year,
-                            thisMonth: my_month + 1,
+                            thisMonth: loadmonth,
                             thisDate: i + 1,
                             thiscontent: displayArea.innerHTML
                         }
                         console.log(`${my_year}`);
-                        console.log(`${my_month + 1}`);
+                        console.log(`${loadmonth}`);
                         console.log(`${i + 1}`);
                         console.log(`內容:${displayArea.innerHTML}`);
                         let json = JSON.stringify(item);
-                        localStorage.setItem(`${my_year}/${my_month + 1}/${i + 1}`, json);
+                        localStorage.setItem(`${my_year}/${loadmonth}/${i + 1}`, json);
 
                     }
 
@@ -849,21 +869,6 @@
                 NotShowForm();
                 history.go();
             }
-        }
-
-        window.onload = function () {
-
-            NotShowForm();
-
-            daily.forEach((el) => {
-                el.addEventListener('click', () => {
-                    form_box.style.display = 'block';
-                })
-            })
-
-            DateUpdate();
-            loadData();
-            listChange();
         }
 
 
