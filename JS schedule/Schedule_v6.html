@@ -524,20 +524,23 @@
             daily.forEach((el) => {
                 el.addEventListener('click', () => {
                     ShowForm();
-                    console.log("daybox");
-                    // enter.disabled = false;
-                    // change.disabled = true;
-                    // cancel.disabled = true;
-                    console.log("功能正常");
-                    // starthour.value = "(時)";
-                    // startmin.value = "(分)";
-                    // endhour.value = "(時)";
-                    // endmin.value = "(分)";
-                    // scheduletxt.value = "";
-                   
+                     //按鈕控制
+                     if (scheduletxt.value === "") {
+                        enter.disabled = false;
+                        change.disabled = true;
+                        cancel.disabled = true;
+                        console.log("判斷無字元")
+                    }
+                    else {
+                        enter.disabled = true;
+                        change.disabled = false;
+                        cancel.disabled = false;
+                        console.log("判斷有字元")
+                    }
+
                 })
             })
-            
+
             DateUpdate();
             loadData();
             listChange();
@@ -724,7 +727,7 @@
 
         // 點到跳出表單
 
-        
+
 
         function NotShowForm() {
             form_box.style.display = 'none';
@@ -733,7 +736,14 @@
             form_box.style.display = 'block';
         }
 
-        back.addEventListener('click', NotShowForm);
+        back.addEventListener('click', () => {
+            starthour.value = "(時)";
+            startmin.value = "(分)";
+            endhour.value = "(時)";
+            endmin.value = "(分)";
+            scheduletxt.value = "";
+            NotShowForm();
+        });
 
 
 
@@ -742,16 +752,8 @@
             daily.forEach((el) => {
                 el.addEventListener('click', () => {
                     ShowForm();
-                    console.log("daybox");
-                    // enter.disabled = false;
-                    // change.disabled = true;
-                    // cancel.disabled = true;
-                    console.log("功能正常");
-                    starthour.value = "(時)";
-                    startmin.value = "(分)";
-                    endhour.value = "(時)";
-                    endmin.value = "(分)";
-                    scheduletxt.value = "";
+
+                   
                 })
             })
         }
@@ -847,7 +849,8 @@
 
                                 let json = JSON.stringify(getitem);
                                 localStorage.setItem(`${my_year}/${loadmonth}/${j + 1}`, json);
-                                
+
+
                             }
                         }
                         NotShowForm();
@@ -898,8 +901,8 @@
 
                                     let json = JSON.stringify(getitem);
                                     localStorage.setItem(`${my_year}/${loadmonth}/${i + 1}`, json);
-                                    
-                                   
+
+
                                 }
                             }
 
