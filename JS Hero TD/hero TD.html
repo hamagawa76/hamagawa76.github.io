@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <style>
+        i {
+            font-size: 48px;
+        }
+
+        * {
+            color: #fff;
+        }
+
+        .showbox{
+            position: absolute;
+            height: 100vh;
+            background-color: #000;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .textcontent{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-fluid {
+            background-color: #0b0b0b;
+        }
+
+        [boxa-id],
+        [boxb-id],
+        [boxc-id] {
+            height: 5vh;
+            width: 50px;
+            /* border: 1px solid #333; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: 0.3s;
+        }
+
+        [boxa-id].active,
+        [boxb-id].active,
+        [boxc-id].active {
+            border: solid 5px #ff0000;
+            box-shadow: 0 0 20px #ff0000;
+            transition: 0s;
+        }
+
+        #msg {
+            font-size: 36px;
+            text-align: center;
+        }
+
+
+        .box {
+            display: flex;
+            justify-content: center;
+            background-image: url(./pic/earth.jpg);
+            background-repeat: no-repeat;
+            background-position: center -60%;
+            background-attachment: fixed;
+        }
+
+        label {
+            border: 1px solid #fa0;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input[type="radio"]:checked+label {
+            border: 2px solid rgb(84, 84, 250);
+            padding: -2px;
+        }
+
+        .pos {
+            position: relative;
+        }
+
+        .controlbox {
+            position: absolute;
+            width: 30%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid ">
+        <div class="row showbox">
+            <div class="col-12 textcontent">
+                <h1>地球防衛戰</h1>
+                <p>求求你 <br>保護僅存的人類吧......</p>
+                <h2>地球上僅存三個聚落，卻已經被入侵地球的外星人發現了</h2>
+                <h2>外星人正砲火猛烈的攻擊三個據點，你必須來回奔波</h2>
+                <h2>只要你在的據點，你就能發揮力量將攻擊隔絕</h2>
+                <h2>別忘了能量存滿後能使用生命能量讓地球恢復生機</h2>
+                <p>離開此頁後，請點擊左上角Start開始遊戲</p>
+                <button id="leave" class="btn btn-primary" onclick="Leave()" >離開此頁</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-5">
+        <div class="row pos">
+            <div class="col-12  controlbox">
+                <button id="start" class="btn btn-primary w-100">start</button>
+                <p id="HP" class="mt-2">HP：<span></span></p>
+                <p id="score" class="mt-2">Score：<span></span></p>
+                <p id="power" class="mt-2">Power：<span></span>%</p>
+                <button id="boostbtn" class="btn btn-primary w-100" onclick="Boost()">Boost</button>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="row box">
+                    <div boxa-id="1" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="1" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="1" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="2" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="2" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="2" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="3" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="3" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="3" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="4" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="4" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="4" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="5" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="5" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="5" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="6" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="6" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="6" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="7" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="7" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="7" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="8" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="8" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="8" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="9" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="9" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="9" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="10" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="10" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="10" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="11" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="11" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="11" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="12" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="12" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="12" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="13" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="13" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="13" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="14" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="14" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="14" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="15" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="15" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="15" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <div boxa-id="16" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxb-id="16" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div boxc-id="16" class="col-1"></div>
+                </div>
+                <div class="row box">
+                    <input type="radio" id="L_hero" name="Hero" class="radiobtn" onclick="">
+                    <label for="L_hero" boxa-id="17" class="col-1"></label>
+                    <div class="col-1"></div>
+                    <input type="radio" id="M_hero" name="Hero" class="radiobtn" onclick="">
+                    <label for="M_hero" boxb-id="17" class="col-1"></label>
+                    <div class="col-1"></div>
+                    <input type="radio" id="R_hero" name="Hero" class="radiobtn" onclick="">
+                    <label for="R_hero" boxc-id="17" class="col-1"></label>
+                </div>
+                <div class="row box">
+                    <div id="eartha" boxa-id="18" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div id="earthb" boxb-id="18" class="col-1"></div>
+                    <div class="col-1"></div>
+                    <div id="earthc" boxc-id="18" class="col-1"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        //宣告
+        //格子的資料
+
+        let stepsa; //剩餘要走幾步
+        let stepsb; //剩餘要走幾步
+        let stepsc; //剩餘要走幾步
+        // let allSteps=0; //全部的步數
+        let currenta = 0; //目前走到哪一格
+        let currentb = 0; //目前走到哪一格
+        let currentc = 0; //目前走到哪一格
+
+
+        //DOM
+        const startBtn = document.getElementById('start');
+        const msgBox = document.querySelector('#msg');
+        const Lhero = document.getElementById('L_hero');
+        const Mhero = document.getElementById('M_hero');
+        const Rhero = document.getElementById('R_hero');
+        const eartha = document.getElementById('eartha');
+        const earthb = document.getElementById('earthb');
+        const earthc = document.getElementById('earthc');
+        const HPtext = document.getElementById('HP');
+        const ScoreText = document.getElementById('score');
+        const PowerText = document.getElementById('power');
+        const boostBtn = document.getElementById('boostbtn');
+        const leaveBtn =document.getElementById('leave');
+        const showbox=document.querySelector('.showbox');
+
+        let bricks;
+        let abricks;
+        let bbricks;
+        let cbricks;
+        let output;
+        let seed;
+        var HP = 25;
+        let speed = 50;//速率(越大走越慢)
+        let score = 0;
+        let raintime = 3000;
+        let power = 0;
+
+
+
+        //function
+        function renderBrick() {
+            abricks = document.querySelectorAll('[boxa-id]');
+            abricks = Array.from(abricks).sort((a, b) => {
+                return a.getAttributeNode('boxa-id').value - b.getAttributeNode('boxa-id').value
+            })
+
+            bbricks = document.querySelectorAll('[boxb-id]');
+            bbricks = Array.from(bbricks).sort((a, b) => {
+                return a.getAttributeNode('boxb-id').value - b.getAttributeNode('boxb-id').value
+            })
+
+            cbricks = document.querySelectorAll('[boxc-id]');
+            cbricks = Array.from(cbricks).sort((a, b) => {
+                return a.getAttributeNode('boxc-id').value - b.getAttributeNode('boxc-id').value
+            })
+
+
+            // abricks.forEach(x=>{
+            //     let id=x.getAttributeNode('box-id').value;
+            //     let data=brickData.find(x=>x.id==id);
+            //     let icon=document.createElement('i');
+            //     icon.setAttribute('class',data.icon);
+            //     icon.style.color=data.color;
+            //     x.appendChild(icon);
+            // })
+        }
+
+
+
+        function go() {
+
+            stepsa = 18;
+            currenta = 0;
+            stepsb = 18;
+            currentb = 0;
+            stepsc = 18;
+            currentc = 0;
+
+
+            // let random=Math.floor(Math.random()*brickData.length)+1;
+            // console.log(random);
+            //steps=random; v1
+            // steps=random+(3*bricks.length) // v2 多跑幾圈
+            // allSteps=steps;
+            randomShoot();
+
+        }
+        function autoRain() {
+            go();
+            setTimeout(autoRain, raintime);
+            // console.log("下雨")
+
+        }
+        function showText() {
+            HPtext.firstElementChild.innerHTML = HP;
+            ScoreText.firstElementChild.innerHTML = score;
+            PowerText.firstElementChild.innerHTML = power;
+        }
+
+        function turnArounda() {
+            //關掉目前亮的
+            console.log(stepsa)
+
+            abricks[currenta].classList.remove('active');
+            currenta++;
+
+            if (currenta >= abricks.length) currenta = 0
+
+            abricks[currenta].classList.add('active');
+            stepsa--
+
+            if (stepsa > 0) {
+                //還沒走完 繼續走
+                setTimeout(turnArounda, speed); //50毫秒之後執行
+
+
+                //當剩餘步數剩下三分之一 減速度  -=就變加速度
+                //if (steps<Math.floor((allSteps/3))) speed+=7; //變速效果
+                if (Lhero.checked == true) {
+                    stepsa = 0
+                    for (i = 0; i < abricks.length; i++) {
+                        abricks[currenta].classList.remove('active');
+                    }
+                }
+            }
+            else {
+                //走完了
+                if (stepsa == 0 && Lhero.checked == false) {
+                    HP--
+                    console.log(HP)
+                }
+                abricks[currenta].classList.remove('active');
+                // msgBox.innerText=brickData[current].target();
+            }
+        }
+        function turnAroundb() {
+            //關掉目前亮的
+            console.log(stepsb)
+            bbricks[currentb].classList.remove('active');
+            currentb++;
+
+            if (currentb >= bbricks.length) currentb = 0
+
+            bbricks[currentb].classList.add('active');
+            stepsb--
+
+            if (stepsb > 0) {
+                //還沒走完 繼續走
+                setTimeout(turnAroundb, speed); //50毫秒之後執行
+                //當剩餘步數剩下三分之一 減速度  -=就變加速度
+                //if (steps<Math.floor((allSteps/3))) speed+=7; //變速效果
+                if (Mhero.checked == true) {
+                    stepsb = 0
+                    for (i = 0; i < bbricks.length; i++) {
+                        bbricks[currentb].classList.remove('active');
+                    }
+
+                }
+            }
+            else {
+                if (stepsb == 0 && Mhero.checked == false) {
+                    HP--
+                    console.log(HP)
+                }
+                //走完了
+                bbricks[currentb].classList.remove('active');
+                // msgBox.innerText=brickData[current].target();
+            }
+        }
+        function turnAroundc() {
+            //關掉目前亮的
+            console.log(stepsc)
+            cbricks[currentc].classList.remove('active');
+            currentc++;
+
+            if (currentc >= cbricks.length) currentc = 0
+
+            cbricks[currentc].classList.add('active');
+            stepsc--
+
+            if (stepsc > 0) {
+                //還沒走完 繼續走
+                setTimeout(turnAroundc, speed); //50毫秒之後執行
+
+
+                //當剩餘步數剩下三分之一 減速度  -=就變加速度
+                //if (steps<Math.floor((allSteps/3))) speed+=7; //變速效果
+                if (Rhero.checked == true) {
+                    stepsc = 0
+                    for (i = 0; i < cbricks.length; i++) {
+                        cbricks[currentc].classList.remove('active');
+                    }
+                }
+            }
+            else {
+                if (stepsc == 0 && Rhero.checked == false) {
+                    HP--
+                    console.log(HP)
+                }
+                //走完了
+                cbricks[currentc].classList.remove('active');
+                // msgBox.innerText=brickData[current].target();
+            }
+        }
+
+        function fisherYatesShuffle(arr) {
+            for (var i = arr.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1)); //random index
+                [arr[i], arr[j]] = [arr[j], arr[i]]; // swap
+            }
+        }
+
+        function Boost() {
+            power = 0;
+            HP = HP + 10;
+        }
+        function BoostControl() {
+            boostBtn.disabled = true;
+        }
+
+        function Leave(){
+            showbox.style.display = 'none';
+        }
+
+
+        function Score() {
+            score++
+            console.log(`時間${score}`)
+            if (score >= 60 && score < 90) {
+                raintime = 2000;
+                console.log("LEVEL 2")
+            }
+            else if (score >= 90 && score < 120) {
+                raintime = 1500;
+                console.log("LEVEL 3")
+            }
+            else if (score >= 120 && score < 180) {
+                raintime = 1000;
+                speed = 40;
+                console.log("LEVEL 4")
+            }
+            else if (score >= 180) {
+                raintime = 700;
+                speed = 30;
+                console.log("LEVEL MAX")
+            }
+            power++;
+            if (power >= 100) {
+                power = 100;
+                boostBtn.disabled = false;
+            }
+            endGame();
+        }
+
+        function randomShoot() {
+            let randomArray = ['a', 'b', 'c'];
+            fisherYatesShuffle(randomArray);
+            let seed = randomArray.slice(0, 1);
+            output = eval(`turnAround${seed}()`);
+            // console.log("隨機發射")
+            // console.log(output)
+
+            return output;
+        }
+
+        function endGame(){
+            console.log(`HP=${HP}`)
+            if (HP <= 0) {
+                let yes = confirm('HP歸零，遊戲結束')
+                if (yes) {
+                    history.go();
+                }
+                else {
+                    history.go();
+                }
+            }
+        }
+
+        //window.onlaod
+        window.onload = function () {
+            renderBrick();
+
+            setInterval(showText, 500);
+
+            startBtn.onclick = function () {
+                autoRain();
+                setInterval(Score, 1000);
+
+                startBtn.disabled = true;
+            }
+            BoostControl();
+            
+        }
+
+    </script>
+</body>
+
+</html>
