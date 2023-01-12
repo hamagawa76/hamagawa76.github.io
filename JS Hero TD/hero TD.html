@@ -483,6 +483,7 @@
         function Boost() {
             power = 0;
             HP = HP + 10;
+            boostBtn.disabled = true;
         }
         function BoostControl() {
             boostBtn.disabled = true;
@@ -496,7 +497,7 @@
         function Score() {
             score++
             console.log(`時間${score}`)
-            if (score >= 60 && score < 90) {
+            if (score >= 45 && score < 90) {
                 raintime = 2000;
                 console.log("LEVEL 2")
             }
