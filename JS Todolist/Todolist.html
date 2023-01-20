@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TodoList</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        .todocontent {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .textcontent input {
+            background-color: #ddd;
+        }
+
+        .checkbox {
+            width: 70%;
+            align-items: center;
+            background-color: #ddd;
+        }
+
+        .checkbox .checkcontent {
+            width: 10%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .checkbox .textcontent {
+            width: 90%;
+        }
+
+        .checkbox .textcontent input {
+            width: 95%;
+        }
+
+        .btnbox {
+            width: 30%;
+            justify-content: space-around;
+        }
+
+        .btnbox .btn {
+            width: 40%;
+        }
+
+        .ensurebtn {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="input-group mt-3 mb-3">
+                    <input id="todotxt" type="text" class="form-control" placeholder="todo..." aria-label="todo..."
+                        aria-describedby="enteritem">
+                    <span class="btn btn-primary" id="enteritem" onclick="addTodoItem()">新增</span>
+                </div>
+                <div class="row todocontent">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        //window.onload
+        window.onload = function () {
+            renderData();
+            editBtnControl();
+            editTodoItem();
+            deleteTodoItem();
+        }
+        //宣告
+
+        let currentIndex
+        //DOM
+
+        const todotxt = document.querySelector('#todotxt');
+        const enteritem = document.querySelector('#enteritem');
+        const todocontent = document.querySelector('.todocontent');
+        let editbtns;
+        let deletebtns;
+        let ensurebtns;
+
+        //function
+        function addTodoItem() {
+            let todolistdata = "save01"
+            let todoItem = todotxt.value
+
+            if (todoItem == "") {
+                alert("請勿空白")
+            }
+            else {
+                let todoObj = {
+                    title: todoItem
+                }
+
+                let todoList = []
+
+                if (localStorage.getItem(todolistdata) == null) {
+                    todoList.push(todoObj)
+                } else {
+                    todoList = JSON.parse(localStorage.getItem(todolistdata))
+                    todoList.push(todoObj)
+                }
+
+                localStorage.setItem(todolistdata, JSON.stringify(todoList))
+
+                todotxt.value = ""
+                renderData();
+                history.go();
+            }
+        }
+
+        function editTodoItem() {
+            ensurebtns = document.getElementsByClassName('ensurebtn');
+            Array.from(ensurebtns).forEach((el, idx) => {
+                el.addEventListener('click', (e) => {
+                    let todolistdata = "save01"
+                    console.log(idx)
+                    console.log(e)
+                    let gettxt = document.querySelector(`.text${idx}`)
+                    let todoItem = gettxt.value;
+
+                    if (todoItem == "") {
+                        alert("請勿空白")
+                    }
+                    else {
+                        let todoList = JSON.parse(localStorage.getItem(todolistdata))
+
+                        todoList[idx] = {
+                            title: todoItem
+                        }
+                        localStorage.setItem(todolistdata, JSON.stringify(todoList))
+
+                        el.style.display = 'none';
+                        editbtns[idx].style.display = 'block';
+                        gettxt.style.backgroundColor = '#ddd';
+                        gettxt.readOnly = true;
+                        history.go()
+                    }
+                })
+            })
+            //renderData()
+        }
+
+        function editBtnControl() {
+            editbtns = document.getElementsByClassName('editbtn');
+            ensurebtns = document.getElementsByClassName('ensurebtn');
+            console.log(editbtns)
+            Array.from(editbtns).forEach((el, idx) => {
+                el.addEventListener('click', () => {
+                    el.style.display = 'none';
+                    ensurebtns[idx].style.display = 'block';
+                    let gettxt = document.querySelector(`.text${idx}`)
+                    gettxt.style.backgroundColor = '#fff';
+                    gettxt.readOnly = false;
+                })
+            })
+        }
+
+        function edit() {
+            console.log(currentIndex);
+            let todolistdata = "save01"
+            let gettxt = document.querySelector(`.text${currentIndex}`)
+            let todoItem = gettxt.value;
+            console.log(todoItem)
+
+            let todoList = JSON.parse(localStorage.getItem(todolistdata))
+
+            todoList[currentIndex] = {
+                title: todoItem
+            }
+            localStorage.setItem(todolistdata, JSON.stringify(todoList))
+            renderData();
+        }
+
+        function deleteItem() {
+            let todolistdata = "save01"
+            let todoList = JSON.parse(localStorage.getItem(todolistdata))
+            todoList.splice(currentIndex, 1)
+
+            localStorage.setItem(todolistdata, JSON.stringify(todoList))
+            renderData();
+        }
+
+        function deleteTodoItem() {
+            deletebtns = document.querySelectorAll('.deletebtn');
+            Array.from(deletebtns).forEach((el, idx) => {
+                el.addEventListener('click', (e) => {
+                    let todolistdata = "save01"
+                    let todoList = JSON.parse(localStorage.getItem(todolistdata))
+                    todoList.splice(idx, 1)
+
+                    localStorage.setItem(todolistdata, JSON.stringify(todoList))
+                    history.go();
+                })
+            })
+            //renderData()
+        }
+
+
+
+
+
+
+
+        function renderData() {
+            todocontent.innerHTML = ''
+
+            if (localStorage.getItem('save01') != null) {
+                let appendarea = document.getElementsByClassName('appendarea')
+                let todoList = JSON.parse(localStorage.getItem('save01'))
+                todoList.forEach((item, index) => {
+                    let todoitem = `<div class="col d-flex appendarea">
+                        <div class="checkbox d-flex w-100">
+                            <div class="checkcontent">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </div>
+                            <div class="textcontent">
+                                <input class="form-check-label text${index}" type="text" for="flexCheckDefault" readonly="readonly" value=" ${item.title}">
+                            </div>
+                        </div>
+                        <div class="btnbox d-flex">
+                            <button class="btn btn-warning editbtn">編輯</button>
+                            <button class="btn btn-success ensurebtn">確定</button>
+                            <button class="btn btn-danger deletebtn">刪除</button>
+                        </div>
+                    </div>`
+
+                    // Array.from(appendarea).forEach((el,idx) => {
+                    //     el.addEventListener ('click', (e) => {
+                    //         currentIndex = idx
+
+                    //         console.log("Hello2")
+                    //     })
+                    // })
+                    todocontent.innerHTML += todoitem
+                })
+            }
+        }
+
+    </script>
+</body>
+
+</html>
