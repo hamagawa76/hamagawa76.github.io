@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setGroup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/navbarAndFooter.css">
+</head>
+<style>
+    .form-control:focus {
+        box-shadow: none;
+        border: 2px solid rgb(13 110 253);
+    }
+
+    .profile {
+        height: 60px;
+        display: flex;
+        align-items: center;
+    }
+
+    .profile:hover {
+        border-bottom: 1px solid;
+    }
+</style>
+
+<body>
+    <nav class="sectionNav navbar navbar-light bg-light w-100">
+        <div class="container d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand fw-bolder fs-2" href="../homepage.html">呵呵</a>
+                <div class="line"></div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="../hoho/categories.html">探索</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="../hoho/start.html">提案</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                <a class="nav-link text-secondary m-3 " href="#"><i class="fa-solid fa-envelope"></i></a>
+                <div class="dropdown me-2">
+                    <button class="btn dropdown-toggle border border-light" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://picsum.photos/30/30/?random=10">
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="dropdownMenuLink">
+                        <li class=""><a class="dropdown-item" href="#">個人頁面</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="./account.html">贊助紀錄</a></li>
+                        <li><a class="dropdown-item" href="../hoho/users/following.html">追蹤計畫</a></li>
+                        <li><a class="dropdown-item" href="../hoho/users/projects.html">提案紀錄</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="./settings.html">帳號設定</a></li>
+                        <li><a class="dropdown-item" href="./membership.html">團隊設定</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="d-inline-block ps-1 px-5 border border-danger">登出</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand border-bottom p-0 ">
+        <div class="container d-flex justify-item-center">
+            <div class="collapse navbar-collapse p-0 " id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item me-1 profile">
+                        <a class="nav-link active" aria-current="page" href="./account.html">贊助紀錄</a>
+                    </li>
+                    <li class="nav-item me-1 profile">
+                        <a class="nav-link active" aria-current="page" href="../hoho/users//following.html">追蹤紀錄</a>
+                    </li>
+                    <li class="nav-item me-1 profile">
+                        <a class="nav-link active" aria-current="page" href="../hoho/users/projects.html">提案紀錄</a>
+                    </li>
+                    <li class="nav-item me-1 profile">
+                        <a class="nav-link active" aria-current="page" href="./settings.html">個人設定</a>
+                    </li>
+                    <li class="nav-item me-1 profile">
+                        <a class="nav-link active" aria-current="page" href="./membership.html">團隊設定</a>
+                    </li>
+                    <li class="nav-item me-1 profile">
+                        <a class="nav-link active" aria-current="page" href="../hoho/users/edit.html">修改密碼</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="box ">
+        <div class="container p-4 ">
+            <h2>團隊成員</h2>
+            <div class="border mb-4 rounded-1 p-3">
+                <p class="border-start border-warning border-5 ps-3">
+                    團隊成員可以修改此帳號所提案的計畫內容、回饋、推薦連結和常見問答，以及發佈更新。<b>不能「聯絡贊助人」或「下載贊助名單」。</b><br>
+                    公開成員會出現在<a href="/users/lucas15">團隊的個人頁面</a>上。
+                </p>
+                <form class="d-flex align-items-end" id="new_membership" action="/memberships" accept-charset="UTF-8"
+                    method="post">
+                    <input type="hidden" name="authenticity_token"
+                        value="7VSxH64iVr8Az_IjUJufiaiWC4lVigYutrvPw1XoZCR3f4xRtatp51GzoHGPrLex46SjYHN_44bfb4pH7paEHg"
+                        autocomplete="off">
+                    <div class="mt-1 w-100">
+                        <label for="email">邀請成員 Email</label>
+                        <input type="email" name="email" id="email" value="" class="form-control">
+                    </div>
+                    <div class="mt-1 w-16 text-center mx-3">
+                        <label for="membership_is_public">公開</label>
+                        <label class="block py-1 mb-0">
+                            <input name="membership[is_public]" type="hidden" value="0" autocomplete="off">
+                            <input class="mb-0" type="checkbox" value="1" checked="checked" name="membership[is_public]"
+                                id="membership_is_public">
+                        </label>
+                    </div>
+                    <div class="ms-3">
+                        <input type="submit" name="commit" value="儲存" class="btn btn-outline-success mb-0"
+                            data-disable-with="儲存">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="pb-5">
+            <div class="container px-4 pt-4">
+                <div class="mt-2">
+                    <h2>所屬團隊</h2>
+                    <div class="p-2 bg-secondary-subtle mb-4 d-flex justify-content-center align-items-center rounded-1"
+                        style="height: 200px">無。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sectionFooter">
+        <div class="container">
+            <div class="row mt-3 py-4">
+                <div class="col-12 col-md-3 text-center mb-3">
+                    <a class="navbar-brand fs-1 fw-bolder" href="#"><i class="fa-regular fa-face-smile"></i> 呵呵</a>
+                </div>
+                <div class="col-3 col-md-2 ms-auto">
+                    <ul class="question m-0 p-0">
+                        <p class="text-dark fw-bolder">幫助</p>
+                        <li><a class="d-inline-block py-2" href="./faq.html">常見問題</a></li>
+                        <li><a class="d-inline-block py-2" href="./docs/terms_of_service.html">使用條款</a></li>
+                        <li><a class="d-inline-block py-2" href="./docs/privacy.html">隱私權政策</a></li>
+                    </ul>
+                </div>
+                <div class="col-3 col-md-2 me-auto">
+                    <ul class="aboutUs m-0 p-0">
+                        <p class="text-dark fw-bolder">關於</p>
+                        <li><a class="d-inline-block py-2" href="./about.html">關於我們</a></li>
+                        <li><a class="d-inline-block py-2" href="./brand.html">商標資源</a></li>
+                        <li><a class="d-inline-block py-2" href="#">KKFARM 音樂創生</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-5">
+                    <div class="iconSocialMedia fs-1 d-flex justify-content-center px-2">
+                        <a href="https://www.facebook.com/zeczec.com"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://twitter.com/zeczec_com"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/zeczec_com/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UC_k_rE8ln6Q75tcC5uvqu8g"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://line.me/ti/p/~@zeczec"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sectionCopyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center my-5">
+                    <p>©呵呵股份有限公司</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+:root {
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-gray-100: #f8f9fa;
+    --bs-gray-200: #e9ecef;
+    --bs-gray-300: #dee2e6;
+    --bs-gray-400: #ced4da;
+    --bs-gray-500: #adb5bd;
+    --bs-gray-600: #6c757d;
+    --bs-gray-700: #495057;
+    --bs-gray-800: #343a40;
+    --bs-gray-900: #212529;
+    --bs-primary: #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-secondary-rgb: 108, 117, 125;
+    --bs-success-rgb: 25, 135, 84;
+    --bs-info-rgb: 13, 202, 240;
+    --bs-warning-rgb: 255, 193, 7;
+    --bs-danger-rgb: 220, 53, 69;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark-rgb: 33, 37, 41;
+    --bs-white-rgb: 255, 255, 255;
+    --bs-black-rgb: 0, 0, 0;
+    --bs-body-color-rgb: 33, 37, 41;
+    --bs-body-bg-rgb: 255, 255, 255;
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-body-color: #212529;
+    --bs-body-bg: #fff;
+    --bs-zecblue: rgb(0, 80, 162);
+    --bs-zecgreen: rgb(34 159 42);
+    --bs-zecpurple: rgb(160 99 137);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", 微軟正黑體, "Microsoft JhengHei", sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.projectCategoryTitle::before,
+.projectCategoryTitle::after {
+    content: '';
+    display: inline-block;
+    flex-grow: 1;
+    height: 2px;
+    background-color: lightgray;
+    margin: 5px 0;
+}
+
+.projectCategoryList::-webkit-scrollbar {
+    width: 0;
+}
+
+.projectCategoryList a {
+    margin: 0 30px;
+    display: inline-block;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.page-link:focus {
+    box-shadow: none;
+}
+
+.cardBorderNone {
+    height: 100%;
+    border: none;
+}
+
+/* card-footer */
+.card-footer {
+    background-color: transparent;
+    border: none;
+}
+
+.card-footer div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-footer div:last-child {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-footer .raisingAmount {
+    color: var(--bs-dark);
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.card-footer .supportNums {
+    color: var(--bs-secondary);
+    font-weight: bold;
+}
+
+.card-footer .remainDays {
+    color: var(--bs-secondary);
+}
+
+.card-footer .raisingPercent {
+    font-weight: bolder;
+}
+
+.card-footer .progress {
+    height: 8px;
+}
+
+.raisingPeople .progress-bar {
+    background-color: var(--bs-zecgreen);
+}
+
+.raisingPeople .card-footer .raisingPercent {
+    color: var(--bs-zecgreen);
+}
+
+.raisingPreorder .progress-bar {
+    background-color: var(--bs-zecblue);
+}
+
+.raisingPreorder .card-footer .raisingPercent {
+    color: var(--bs-zecblue);
+}
+
+.raisingSubscription .progress-bar {
+    background-color: var(--bs-zecpurple);
+}
+
+.raisingSubscription .card-footer .raisingPercent {
+    color: var(--bs-zecpurple);
+}
+
+.sectionRaisingOrdinary .raisingPeople .card-footer .remainDays span:first-child,
+.sectionRaisingSuccess .raisingPeople .card-footer .remainDays span:first-child {
+    color: var(--bs-zecgreen);
+    font-weight: bold;
+}
+
+.sectionRaisingOrdinary .raisingPreorder .card-footer .remainDays span:first-child,
+.sectionRaisingSuccess .raisingPreorder .card-footer .remainDays span:first-child {
+    color: var(--bs-zecblue);
+    font-weight: bold;
+}
+
+/* .sectionFooter .container ul a:hover {
+    color: var(--bs-gray-600);
+}
+
+.iconSocialMedia {
+    box-sizing: border-box;
+}
+
+.iconSocialMedia a {
+    color: var(--bs-gray-600);
+    padding: 0 10px;
+}
+
+.sectionFooter .iconSocialMedia a:hover .fa-facebook {
+    color: #1877f2;
+}
+
+.sectionFooter .iconSocialMedia a:hover .fa-twitter {
+    color: #1da1f2;
+}
+
+.sectionFooter .iconSocialMedia a:hover .fa-instagram {
+    color: #000;
+}
+
+.sectionFooter .iconSocialMedia a:hover .fa-youtube {
+    color: #dc2626;
+}
+
+.sectionFooter .iconSocialMedia a:hover .fa-line {
+    color: #00c300;
+}
+
+@media screen and (min-width <=768px) {
+    .sectionFooter .navbar-brand {
+        color: #00c300;
+    }
+} */

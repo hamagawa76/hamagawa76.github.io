@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>呵呵 | 5桌專題 | 私訊</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/normalize.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- <link rel="stylesheet" href="./Comment.css"> -->
+    <style>
+        header{
+            height: 100px;
+            border-bottom: 1px solid #ccc;
+        }
+        h1{display: none;}
+        a{
+            text-decoration: none;
+        }
+        .message_box{ 
+            width: 500px;
+            background-color: rgb(244, 244, 245); 
+            padding: 25px; 
+            margin: 50px auto;
+        }
+        .title p{
+            font-weight: bold;
+        }
+        .title .pic{
+            width: 50px;
+        }
+        .title .pic img{
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+        .btn{
+            color: var(--spn-max);
+            border:1px solid var(--spn-max);
+            padding: 5px 15px;
+        }
+        .btn:hover{
+            color: #333;
+            border:1px solid #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+    <!-- 導覽列 -->
+    <nav class="sectionNav navbar navbar-light bg-light w-100">
+        <div class="container d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand fw-bolder fs-2" href="../homepage.html">呵呵</a>
+                <div class="line"></div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="../hoho/categories.html">探索</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="../hoho/start.html">提案</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                <a class="nav-link text-secondary m-3 " href="#"><i class="fa-solid fa-envelope"></i></a>
+                <div class="dropdown me-2">
+                    <button class="btn dropdown-toggle border border-light" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://picsum.photos/30/30/?random=10">
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="dropdownMenuLink">
+                        <li class=""><a class="dropdown-item" href="#">個人頁面</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="./account.html">贊助紀錄</a></li>
+                        <li><a class="dropdown-item" href="../hoho/users/following.html">追蹤計畫</a></li>
+                        <li><a class="dropdown-item" href="../hoho/users/projects.html">提案紀錄</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="./settings.html">帳號設定</a></li>
+                        <li><a class="dropdown-item" href="./membership.html">團隊設定</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="d-inline-block ps-1 px-5 border border-danger">登出</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </header>
+    <div class="message_box">
+        <h1 class="topic">留言</h1>
+        <div class="title">
+            <p>收件人</p>
+            <div class="pic">
+                <img src="https://picsum.photos/200/200?grayscale">
+            </div>
+            <!-- 連結:提案人個人頁面 -->
+            <a href="#">Neo Choice</a>
+        </div>
+        <div class="text">
+            <p>訊息內容</p>
+            <textarea name="" id="" cols="50" rows="8" class=" border"></textarea>
+        </div>
+        <div class="btn  mt-3">送出訊息</div>
+    </div>
+
+    <!-- footer -->
+    <div class="sectionFooter">
+        <div class="container">
+            <div class="row mt-3 py-4">
+                <div class="col-12 col-md-3 text-center mb-3">
+                    <a class="navbar-brand fs-1 fw-bolder" href="#"><i class="fa-regular fa-face-smile"></i> 呵呵</a>
+                </div>
+                <div class="col-3 col-md-2 ms-auto">
+                    <ul class="question m-0 p-0">
+                        <p class="text-dark fw-bolder">幫助</p>
+                        <li><a class="d-inline-block py-2" href="../faq.html">常見問題</a></li>
+                        <li><a class="d-inline-block py-2" href="../docs/terms_of_service.html">使用條款</a></li>
+                        <li><a class="d-inline-block py-2" href="../docs//privacy.html">隱私權政策</a></li>
+                    </ul>
+                </div>
+                <div class="col-3 col-md-2 me-auto">
+                    <ul class="aboutUs m-0 p-0">
+                        <p class="text-dark fw-bolder">關於</p>
+                        <li><a class="d-inline-block py-2" href="../about.html">關於我們</a></li>
+                        <li><a class="d-inline-block py-2" href="../brand.html">商標資源</a></li>
+                        <li><a class="d-inline-block py-2" href="#">KKFARM 音樂創生</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-5">
+                    <div class="iconSocialMedia fs-1 d-flex justify-content-center px-2">
+                        <a href="https://www.facebook.com/zeczec.com"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://twitter.com/zeczec_com"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/zeczec_com/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UC_k_rE8ln6Q75tcC5uvqu8g"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://line.me/ti/p/~@zeczec"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

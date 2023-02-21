@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>呵呵 | 5桌專題 | 選擇方案</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../../../css/normalize.css">
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/back_project.css">
+    <style>
+        .topic {
+            display: none;
+        }
+
+        header {
+            height: 100px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* 共用 */
+        section {
+            border-bottom: 0.1px solid #eee;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+        }
+
+        h2 {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        /* ------info----- */
+        #projectName {
+            font-weight: bolder;
+            color: #000;
+        }
+
+        .text {
+            font-size: 14px;
+        }
+
+        /* ------card-part----- */
+        .card-part {
+            padding: 0 30px;
+
+            width: 90%;
+            scrollbar-color: #000 #fff;
+            scrollbar-width: thin;
+            overflow-x: scroll;
+        }
+
+        .card-part::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        .card {
+            /* text-decoration: none; */
+            color: rgb(63, 63, 63);
+        }
+
+        .card .remain {
+            color: #fff;
+            padding: 5px 10px;
+
+        }
+
+        .card .sponsed {
+            background-color: rgb(238, 236, 236);
+            padding: 5px 10px;
+
+        }
+
+        .card ul li i {
+            color: var(--spn-max);
+        }
+
+        /* options */
+        .options .more {
+            width: 90%;
+            line-height: 30px;
+        }
+
+        .more p {
+            /* background-color: #ddd8; */
+            width: fit-content;
+            margin: auto;
+            color: #000;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="topic">呵呵募資</h1>
+    <header>
+        <!-- 導覽列 -->
+        <nav class="section-nav navbar navbar-light bg-light w-100">
+            <div class="container d-flex justify-content-between">
+                <div class="d-flex align-items-center">
+                    <a class="navbar-brand fw-bolder fs-2" href="#">呵呵</a>
+                    <div class=""
+                        style="width: 1px; height: 30px; background-color: var(--bs-gray-400); margin-left: 10px;">
+                    </div>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="#">探索</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="#">提案</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center">
+                    <a class="nav-link text-secondary m-3 " href="#"><i class="fa-solid fa-envelope"></i></a>
+                    <div class="dropdown me-2">
+                        <button class="btn dropdown-toggle border border-light" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://picsum.photos/30/30/?random=10">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="dropdownMenuLink">
+                            <li class=""><a class="dropdown-item" href="#">個人頁面</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">贊助紀錄</a></li>
+                            <li><a class="dropdown-item" href="#">追蹤計畫</a></li>
+                            <li><a class="dropdown-item" href="#">提案紀錄</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">帳號設定</a></li>
+                            <li><a class="dropdown-item" href="#">團隊設定</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#"><span
+                                        class="d-inline-block p-1 px-5 border border-danger">登出</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- product info -->
+    <section class="info mt-4">
+        <h1 class="topic">商品介紹</h1>
+        <div class="container">
+            <div class="row">
+                <div class="kv col-12 col-lg-4">
+                    <!-- 商品圖 -->
+                    <img src="https://picsum.photos/200/150/?blur=2" alt="ProductPic">
+                </div>
+                <div class="content col-12 col-lg-8 p-3 ">
+                    <h2>
+                        <!-- 連結:專案內容 -->
+                        <a href="#" id="projectName">日本人氣熱銷，6WAY多功能『Smart Hook Plus包袋隨身掛勾』全新進化!</a>
+                    </h2>
+                    <div class="text">
+                        <span>提案人</span>
+                        <!-- 連結:提案人個人頁面 -->
+                        <a href="#" id="proposer">Neo Choice</a>
+                        <span> | </span>
+                        <span id="project_type">群眾集資</span>
+                        <p class="mt-3 project_"><b>NT$1,077,994</b> / 目標 NT$50,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- options -->
+    <section class="options d-flex flex-wrap justify-content-center col-12">
+        <h1 class="topic">選擇方案</h1>
+        <div class="more ">
+            <p><i class="fa-solid fa-arrow-right"></i>左右捲動看看更多選項<i class="fa-solid fa-arrow-left"></i></p>
+        </div>
+        <div class="card-part d-flex">
+            <div class="my-3 me-4 card-box">
+                <a href="">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://fakeimg.pl/300x200/200" class="card-img-top" alt="方案圖片">
+                        <div class="card-body">
+                            <h5 class="card-title">NT$543</h5>
+                            <div class="card-tags d-flex text-xs ">
+                                <div class="remain font-bold bg-danger">剩餘<span>53</span>份</div>
+                                <div class="sponsed">已被贊助<span>547/600</span></div>
+                            </div>
+                            <p class="card-text text-sm">『Smart Hook Plus包袋掛勾&登山扣環 1入』<br>未來售價：$1,260 ⇒
+                                超早鳥43折優惠價 $543</p>
+                            <p class="card-text text-sm">內含
+                                <br>➤ Smart Hook Plus包袋隨身掛勾 x 1
+                                <br>➤ 登山扣環x 1
+                                <br>➤收納包裝袋 x 1
+                                <br>➤ 台灣國內運費
+                            </p>
+                            <p class="card-text text-sm">—— ✽ 注意事項✽——
+                                <br>-贊助後可選擇顏色
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-xs"><i class="fa-solid fa-circle-check"></i>臺灣本島、離島免運<br>
+                                <i class="fa-solid fa-circle-check"></i>可寄送至 <span>香港、澳門</span>
+                            </li>
+                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="text-xs"><i class="fa-regular fa-calendar"></i>預計於<span>2023年三月</span>實現</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="my-3 me-4 card-box">
+                <a href="">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://fakeimg.pl/300x200/200" class="card-img-top" alt="方案圖片">
+                        <div class="card-body">
+                            <h5 class="card-title">NT$543</h5>
+                            <div class="card-tags d-flex text-xs ">
+                                <div class="remain font-bold bg-danger">剩餘<span>53</span>份</div>
+                                <div class="sponsed">已被贊助<span>547/600</span></div>
+                            </div>
+                            <p class="card-text text-sm">『Smart Hook Plus包袋掛勾&登山扣環 1入』<br>未來售價：$1,260 ⇒
+                                超早鳥43折優惠價 $543</p>
+                            <p class="card-text text-sm">內含
+                                <br>➤ Smart Hook Plus包袋隨身掛勾 x 1
+                                <br>➤ 登山扣環x 1
+                                <br>➤收納包裝袋 x 1
+                                <br>➤ 台灣國內運費
+                            </p>
+                            <p class="card-text text-sm">—— ✽ 注意事項✽——
+                                <br>-贊助後可選擇顏色
+                                <br>-已包含宅配運費
+                                <br>-如需統編抬頭請留於備註欄位
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-xs"><i class="fa-solid fa-circle-check"></i>臺灣本島、離島免運<br>
+                                <i class="fa-solid fa-circle-check"></i>可寄送至 <span>香港、澳門</span>
+                            </li>
+                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="text-xs"><i class="fa-regular fa-calendar"></i>預計於<span>2023年三月</span>實現</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="my-3 me-4 card-box">
+                <a href="">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://fakeimg.pl/300x200/200" class="card-img-top" alt="方案圖片">
+                        <div class="card-body">
+                            <h5 class="card-title">NT$543</h5>
+                            <div class="card-tags d-flex text-xs ">
+                                <div class="remain font-bold bg-danger">剩餘<span>53</span>份</div>
+                                <div class="sponsed">已被贊助<span>547/600</span></div>
+                            </div>
+                            <p class="card-text text-sm">『Smart Hook Plus包袋掛勾&登山扣環 1入』<br>未來售價：$1,260 ⇒
+                                超早鳥43折優惠價 $543</p>
+                            <p class="card-text text-sm">內含
+                                <br>➤ Smart Hook Plus包袋隨身掛勾 x 1
+                            </p>
+                            <p class="card-text text-sm">—— ✽ 注意事項✽——
+                                <br>-已包含宅配運費
+                                <br>-如需統編抬頭請留於備註欄位
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-xs"><i class="fa-solid fa-circle-check"></i>臺灣本島、離島免運<br>
+                                <i class="fa-solid fa-circle-check"></i>可寄送至 <span>香港、澳門</span>
+                            </li>
+                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="text-xs"><i class="fa-regular fa-calendar"></i>預計於<span>2023年三月</span>實現</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="my-3 me-4 card-box">
+                <a href="">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://fakeimg.pl/300x200/200" class="card-img-top" alt="方案圖片">
+                        <div class="card-body">
+                            <h5 class="card-title">NT$543</h5>
+                            <div class="card-tags d-flex text-xs ">
+                                <div class="remain font-bold bg-danger">剩餘<span>53</span>份</div>
+                                <div class="sponsed">已被贊助<span>547/600</span></div>
+                            </div>
+                            <p class="card-text text-sm">『Smart Hook Plus包袋掛勾&登山扣環 1入』<br>未來售價：$1,260 ⇒
+                                超早鳥43折優惠價 $543</p>
+                            <p class="card-text text-sm">內含
+                                <br>➤ Smart Hook Plus包袋隨身掛勾 x 1
+                                <br>➤ 登山扣環x 1
+                                <br>➤收納包裝袋 x 1
+                                <br>➤ 台灣國內運費
+                            </p>
+                            <p class="card-text text-sm">—— ✽ 注意事項✽——
+                                <br>-贊助後可選擇顏色
+                                <br>-已包含宅配運費
+                                <br>-如需統編抬頭請留於備註欄位
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-xs"><i class="fa-solid fa-circle-check"></i>臺灣本島、離島免運<br>
+                                <i class="fa-solid fa-circle-check"></i>可寄送至 <span>香港、澳門</span>
+                            </li>
+                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="text-xs"><i class="fa-regular fa-calendar"></i>預計於<span>2023年三月</span>實現</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="my-3 me-4 card-box">
+                <a href="">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://fakeimg.pl/300x200/200" class="card-img-top" alt="方案圖片">
+                        <div class="card-body">
+                            <h5 class="card-title">NT$543</h5>
+                            <div class="card-tags d-flex text-xs ">
+                                <div class="remain font-bold bg-danger">剩餘<span>53</span>份</div>
+                                <div class="sponsed">已被贊助<span>547/600</span></div>
+                            </div>
+                            <p class="card-text text-sm">『Smart Hook Plus包袋掛勾&登山扣環 1入』<br>未來售價：$1,260 ⇒
+                                超早鳥43折優惠價 $543</p>
+                            <p class="card-text text-sm">內含
+                                <br>➤ Smart Hook Plus包袋隨身掛勾 x 1
+                                <br>➤ 登山扣環x 1
+                                <br>➤收納包裝袋 x 1
+                                <br>➤ 台灣國內運費
+                            </p>
+                            <p class="card-text text-sm">—— ✽ 注意事項✽——
+                                <br>-贊助後可選擇顏色
+                                <br>-已包含宅配運費
+                                <br>-如需統編抬頭請留於備註欄位
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-xs"><i class="fa-solid fa-circle-check"></i>臺灣本島、離島免運<br>
+                                <i class="fa-solid fa-circle-check"></i>可寄送至 <span>香港、澳門</span>
+                            </li>
+                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="text-xs"><i class="fa-regular fa-calendar"></i>預計於<span>2023年三月</span>實現</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="my-3 me-4 card-box">
+                <a href="">
+                    <div class="card" style="width: 18rem;">
+                        <img src="https://fakeimg.pl/300x200/200" class="card-img-top" alt="方案圖片">
+                        <div class="card-body">
+                            <h5 class="card-title">NT$543</h5>
+                            <div class="card-tags d-flex text-xs ">
+                                <div class="remain font-bold bg-danger">剩餘<span>53</span>份</div>
+                                <div class="sponsed">已被贊助<span>547/600</span></div>
+                            </div>
+                            <p class="card-text text-sm">『Smart Hook Plus包袋掛勾&登山扣環 1入』<br>未來售價：$1,260 ⇒
+                                超早鳥43折優惠價 $543</p>
+                            <p class="card-text text-sm">內含
+                                <br>➤ Smart Hook Plus包袋隨身掛勾 x 1
+                                <br>➤ 登山扣環x 1
+                                <br>➤收納包裝袋 x 1
+                                <br>➤ 台灣國內運費
+                            </p>
+                            <p class="card-text text-sm">—— ✽ 注意事項✽——
+                                <br>-贊助後可選擇顏色
+                                <br>-已包含宅配運費
+                                <br>-如需統編抬頭請留於備註欄位
+                            </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-xs"><i class="fa-solid fa-circle-check"></i>臺灣本島、離島免運<br>
+                                <i class="fa-solid fa-circle-check"></i>可寄送至 <span>香港、澳門</span>
+                            </li>
+                        </ul>
+                        <div class="card-body d-flex justify-content-center">
+                            <div class="text-xs"><i class="fa-regular fa-calendar"></i>預計於<span>2023年三月</span>實現</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- footer -->
+    <footer>
+        <div class="section-footer"
+            style="background-color: var(--bs-gray-100); border-top: 1px solid lightgray; border-bottom: 1px solid lightgray;">
+            <div class="container">
+                <div class="row mt-3 py-4">
+                    <div class="col-12 col-md-3 text-center mb-3">
+                        <a class="navbar-brand fs-1 fw-bolder" href="#"><i class="fa-regular fa-face-smile"></i> 呵呵</a>
+                    </div>
+                    <div class="col-3 col-md-2 ms-auto">
+                        <ul class="question m-0 p-0">
+                            <p class="text-dark fw-bolder">幫助</p>
+                            <li><a class="d-inline-block py-2" href="#">常見問題</a></li>
+                            <li><a class="d-inline-block py-2" href="#">使用條款</a></li>
+                            <li><a class="d-inline-block py-2" href="#">隱私權政策</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-3 col-md-2 me-auto">
+                        <ul class="aboutUs m-0 p-0">
+                            <p class="text-dark fw-bolder">關於</p>
+                            <li><a class="d-inline-block py-2" href="#">關於我們</a></li>
+                            <li><a class="d-inline-block py-2" href="#">商標資源</a></li>
+                            <li><a class="d-inline-block py-2" href="#">KKFARM 音樂創生</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <div class="icon-socialMedia fs-1 d-flex justify-content-center px-2">
+                            <a href="https://www.facebook.com/zeczec.com"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://twitter.com/zeczec_com"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/zeczec_com/"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/channel/UC_k_rE8ln6Q75tcC5uvqu8g"><i
+                                    class="fa-brands fa-youtube"></i></a>
+                            <a href="https://line.me/ti/p/~@zeczec"><i class="fa-brands fa-line"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-copyright" style="background-color: var(--bs-gray-100);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center my-5">
+                        <p>©呵呵股份有限公司</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
